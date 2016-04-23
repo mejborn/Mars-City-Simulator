@@ -7,6 +7,8 @@ public class PersonBehavior : MonoBehaviour {
 	Person interractee;
 	[SerializeField]
 	ScienceField.Scfield scienceField;
+	[SerializeField]
+	ResourceBehavior resource;
 	
 	// Use this for initialization
 	void Start () {

@@ -23,7 +23,6 @@ public class ScienceField
 	{
 		instantiateVariables ();
 		this.scfield = scfield;
-
 	}
 
 	void instantiateVariables ()
