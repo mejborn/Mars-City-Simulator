@@ -8,10 +8,12 @@ public class PersonBehavior : MonoBehaviour {
 
 	[SerializeField]
 	ScienceField.Scfield scienceField;
+	[SerializeField]
+	string name;
 	
 	// Use this for initialization
 	void Start () {
-		this.person = new Person (scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>());
+		this.person = new Person (name,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>());
 	}
 	
 	// Update is called once per frame

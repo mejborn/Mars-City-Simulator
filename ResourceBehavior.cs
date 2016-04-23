@@ -7,10 +7,12 @@ public class ResourceBehavior : MonoBehaviour {
 	double food,water,energy,waste,science,money;
 	public enum Resource {food,water,energy,waste,science,money};
 	LinkedList<Building> buildings;
+	LinkedList<Person> people;
 
 	// Use this for initialization
 	void Start () {
 		this.buildings = new LinkedList<Building> ();
+		this.people = new LinkedList<Person> ();
 	}
 	
 	// Update is called once per frame

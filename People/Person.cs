@@ -11,6 +11,7 @@ public class Person
 
 	public enum State {working, interracting, home, sleeping}
 
+	private string name;
 	private Health health;
 	private ScienceField scfield;
 	private Personality personality;
@@ -19,7 +20,8 @@ public class Person
 	private Person interractee;
 	private ResourceBehavior resource;
 
-	public Person(ScienceField.Scfield scfield,ResourceBehavior resourceBehavior){
+	public Person(string name,ScienceField.Scfield scfield,ResourceBehavior resourceBehavior){
+		this.name = name;
 		this.scfield = new ScienceField(scfield);
 		this.personality = new Personality ();
 		this.state = State.home;
