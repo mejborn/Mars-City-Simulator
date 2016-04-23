@@ -12,6 +12,7 @@ public class PersonBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		resource = GameObject.FindGameObjectWithTag("resources").GetComponent<ResourceBehavior>();
 		this.person = new Person (scienceField);
 	}
 	
@@ -24,7 +25,7 @@ public class PersonBehavior : MonoBehaviour {
 		case Person.State.sleeping:
 			break;
 		case Person.State.working:
-			person.performInterraction (currentBuilding);
+			person.performInterraction ();
 			break;
 		case Person.State.interracting:
 			person.performInterraction (interractee);

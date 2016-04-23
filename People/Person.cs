@@ -12,6 +12,7 @@ public class Person
 	private ScienceField scfield;
 	private Personality personality;
 	private State state;
+	private Building currentBuilding;
 
 	public Person(ScienceField.Scfield scfield){
 		this.scfield = new ScienceField(scfield);
@@ -34,9 +35,21 @@ public class Person
 		return state;
 	}
 
-	public void performInterraction (Building building)
+	public void performInterraction ()
 	{
-		building.performWork (this);
+		currentBuilding.performWork (this);
+	}
+
+	public bool enterBuilding(Building building){
+		if (building.enter (this)) {
+			currentBuilding = building;
+			if (Building.BuildingType.Habitation.Equals(building.getBuildingType())) {
+				state = State.home;
+			}else { state = State.working; }
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void consumeResources ()
@@ -46,7 +59,7 @@ public class Person
 
 	public void updateHealth ()
 	{
-		throw new NotImplementedException ();
+		health.update ();
 	}
 
 }
