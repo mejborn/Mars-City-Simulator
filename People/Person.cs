@@ -11,7 +11,7 @@ public class Person
 
 	public enum State {working, interracting, home, sleeping}
 
-	public string name { get; private set; }
+	public string name = "test";
 	public Personality personality { get; private set; }
 	public State state { get; private set; }
 	public Building currentBuilding { get; private set; }
@@ -19,14 +19,33 @@ public class Person
 	private Health health;
 	private ScienceField scfield;
 
-	private ResourceBehavior resource;
+	private Resource resource;
 
-	public Person(string name,ScienceField.Scfield scfield,ResourceBehavior resourceBehavior){
-		this.name = name;
+	public Person(string name,ScienceField.Scfield scfield,Resource resource){
+		this.health = new Health ();
+		//this.name = name;
 		this.scfield = new ScienceField(scfield);
 		this.personality = new Personality ();
 		this.state = State.home;
-		this.resource = resourceBehavior;
+		this.resource = resource;
+		this.resource.addPerson (this);
+	}
+
+	public void UpdateState ()
+	{
+		switch (state) {
+		case Person.State.home:
+			consumeResources ();
+			break;
+		case Person.State.sleeping:
+			break;
+		case Person.State.working:
+			performInterraction ();
+			break;
+		default:
+			break;
+		}
+		updateHealth ();
 	}
 
 	public Skillset getSkillset(){
@@ -53,10 +72,10 @@ public class Person
 	public void consumeResources ()
 	{
 		if (health.addFood()) {
-			resource.consumeResource (ResourceBehavior.Resource.food, foodConsumationModifier);
+			resource.consumeResource (Resource.Resources.food, foodConsumationModifier);
 		}
 		if (health.addWater()) {
-			resource.consumeResource (ResourceBehavior.Resource.water, waterConsumationModifier);
+			resource.consumeResource (Resource.Resources.water, waterConsumationModifier);
 		}
 	}
 

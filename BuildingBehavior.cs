@@ -6,16 +6,19 @@ public class BuildingBehavior : MonoBehaviour {
 
 	[SerializeField]
 	Building.BuildingType buildingType;
-	ResourceBehavior resource;
+	Resource resource;
 	[SerializeField]
     public int extendsX = 2;
     [SerializeField]
     public int extendsZ = 2;
 
+	void Awake(){
+		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
+		this.building = new Building (buildingType);
+	}
+
     // Use this for initialization
     void Start () {
-		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ();
-		this.building = new Building (buildingType);
 		resource.addBuilding (building);
 	}
 	
