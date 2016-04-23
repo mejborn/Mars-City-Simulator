@@ -16,7 +16,7 @@ public class BuildingBehavior : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		this.building = new Building (buildingType);
-		resource.addBuilding (this);
+		resource.addBuilding (building);
 	}
 	
 	// Update is called once per frame
