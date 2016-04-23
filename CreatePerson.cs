@@ -1,0 +1,18 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class CreatePerson : MonoBehaviour {
+	Person person;
+	[SerializeField]
+	ScienceField.Scfield scienceField;
+	
+	// Use this for initialization
+	void Start () {
+		this.person = new Person (scienceField);
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}
