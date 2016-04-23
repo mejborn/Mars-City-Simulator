@@ -21,7 +21,7 @@ public class GridBehavior : MonoBehaviour {
         collisionGrid[ix, iz] = val; ;
     }
 
-    /*void OnDrawGizmos()
+   /* void OnDrawGizmos()
     {
         for (int x = 0; x < nx; x++)
         {
@@ -32,9 +32,10 @@ public class GridBehavior : MonoBehaviour {
                 else
                     Gizmos.color = Color.green;
 
-                Gizmos.DrawSphere(new Vector3(x - nx / 2 + 0.5f, 0, z - nx/2 + 0.5f), .55f);
+                Gizmos.DrawCube(new Vector3(x - nx / 2 + 0.5f, 0, z - nx / 2 + 0.5f), Vector3.one * 0.5f);
             }
         }
 
     }*/
 }
+
