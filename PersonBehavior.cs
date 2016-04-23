@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CreatePerson : MonoBehaviour {
+public class PersonBehavior : MonoBehaviour {
 	Person person;
 	[SerializeField]
 	ScienceField.Scfield scienceField;
