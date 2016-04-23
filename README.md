@@ -1,1 +1,2 @@
-# Mars-City-Simulator-2016
+# Mars-City-Simulator (C) 2016
+# All rights reserved
