@@ -3,6 +3,7 @@ using System.Collections;
 
 class Person
 {
+	private Health health;
 	private ScienceField scfield;
 	private Personality personality;
 
@@ -10,4 +11,10 @@ class Person
 		this.scfield = new ScienceField(scfield);
 		this.personality = new Personality ();
 	}
+	public Personality getPersonality(){
+		return this.personality;
+	}
+//	public Skillset getSkillset(){
+		//return ScienceField.skillset;
+//	}
 }

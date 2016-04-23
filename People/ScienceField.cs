@@ -3,7 +3,12 @@ using System.Collections;
 
 class ScienceField
 {
-	private int science, engineering, farming;
+	private Scfield scfield;
+	private Skillset skillset { 
+		get;
+		set;
+	}
+
 	public enum Scfield 
 	{
 		Scientist,
@@ -16,31 +21,35 @@ class ScienceField
 	public ScienceField(Scfield scfield)
 	{
 		instantiateVariables ();
-		switch (scfield) {
-		case Scfield.Scientist:
-			this.science += 5;
-			break;
-		case Scfield.Engineer:
-			this.engineering += 5;
-			break;
-		case Scfield.Farmer:
-			this.farming += 5;
-			break;
-		case Scfield.Astronaut:
-			this.science += 2;
-			this.engineering += 3;
-			break;
-		default:
-			break;
-		}		
+		this.scfield = scfield;
+
 	}
 
 	void instantiateVariables ()
 	{
-		Random rnd = new Random();
-		this.science = rnd.Next (1, 4);
-		this.engineering = rnd.Next (1, 4);
-		this.farming = rnd.Next (1, 4);
-	}
+		int science, engineering, farming;
 
+		science = Random.Range (1, 4);
+		engineering = Random.Range (1, 4);
+		farming = Random.Range (1, 4);
+
+		switch (scfield) {
+		case Scfield.Scientist:
+			science += 5;
+			break;
+		case Scfield.Engineer:
+			engineering += 5;
+			break;
+		case Scfield.Farmer:
+			farming += 5;
+			break;
+		case Scfield.Astronaut:
+			science += 2;
+			engineering += 3;
+			break;
+		default:
+			break;
+		}
+		this.skillset = new Skillset (science, engineering, farming);
+	}
 }

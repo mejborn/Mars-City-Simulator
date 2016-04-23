@@ -1,2 +1,5 @@
 #Meta files
 *.meta
+*.unity
+testBuilding.mtl
+testBuilding.obj

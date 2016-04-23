@@ -6,10 +6,9 @@ class Personality
 	int D,I,S,C;
 	public Personality()
 	{
-		Random rnd = new Random ();
-		this.D = rnd.Next (1, 10);
-		this.I = rnd.Next (1, 10);
-		this.S = rnd.Next (1, 10);
-		this.C = rnd.Next (1, 10);
+		this.D = Random.Range (1, 10);
+		this.I = Random.Range (1, 10);
+		this.S = Random.Range (1, 10);
+		this.C = Random.Range (1, 10);
 	}
 }
