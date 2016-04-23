@@ -4,12 +4,15 @@ using System.Collections.Generic;
 
 public class ResourceBehavior : MonoBehaviour {
 	[SerializeField]
-	int food,water,energy,waste,science,money;
+	double food,water,energy,waste,science,money;
+	public enum Resource {food,water,energy,waste,science,money};
 	LinkedList<Building> buildings;
+	LinkedList<Person> people;
 
 	// Use this for initialization
 	void Start () {
 		this.buildings = new LinkedList<Building> ();
+		this.people = new LinkedList<Person> ();
 	}
 	
 	// Update is called once per frame
@@ -38,5 +41,37 @@ public class ResourceBehavior : MonoBehaviour {
 
 	public void addBuilding(Building building){
 		buildings.AddLast (building);
+	}
+
+	public LinkedList<Person> getPeople(){
+		return this.people;
+	}
+	public LinkedList<Building> getBuildings(){
+		return this.buildings;
+	}
+
+	public void consumeResource(Resource res, double amount){
+		switch (res) {
+		case Resource.energy:
+			this.energy -= amount;
+			break;
+		case Resource.food:
+			this.food -= amount;
+			break;
+		case Resource.money:
+			this.money -= amount;
+			break;
+		case Resource.science:
+			this.science -= amount;
+			break;
+		case Resource.waste:
+			this.waste -= amount;
+			break;
+		case Resource.water:
+			this.water -= amount;
+			break;
+		default:
+			break;
+		}
 	}
 }
