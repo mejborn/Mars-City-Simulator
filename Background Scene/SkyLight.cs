@@ -12,6 +12,8 @@ public class SkyLight : MonoBehaviour {
     public float currentTimeOfDay = 0;
     public int currentDayNumber = 1;
 
+    public Light night; 
+
 
     public GameObject phobos;
     public float phobosOrbitTime;
@@ -25,12 +27,14 @@ public class SkyLight : MonoBehaviour {
     [HideInInspector]
     public float timeMultiplier = 1f;
     float sunInitialIntensity;
+    float nightInitialIntensity; 
 
     int radius = 1000;  
 
     void Start()
     {
         sunInitialIntensity = sun.intensity;
+        nightInitialIntensity = night.intensity;
         phobosOrbitTime = secondsInFullDay / (marsDay / phobosDay);
         deimosOrbitTime = secondsInFullDay / (marsDay / deimosDay);
     }
@@ -77,16 +81,19 @@ public class SkyLight : MonoBehaviour {
         if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.77f)
         {
             intensityMultiplier = 0;
+
         }
         else if (currentTimeOfDay <= 0.25f)
         {
             intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+            night.intensity = intensityMultiplier;
         }
         else if (currentTimeOfDay >= 0.73f)
         {
             intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
+            night.intensity = intensityMultiplier;
         }
-
+        night.intensity = 1;
         sun.intensity = sunInitialIntensity * intensityMultiplier;
     }
 }
