@@ -78,10 +78,10 @@ public class Building {
 		double numD = 0, numI = 0, numS = 0, numC = 0;
 		double bonus = 1;
 		foreach (Person person in occupants) {
-			numD += person.getPersonality ().getD();
-			numI += person.getPersonality ().getI();
-			numS += person.getPersonality ().getS();
-			numC += person.getPersonality ().getC();
+			numD += person.personality.getD();
+			numI += person.personality.getI();
+			numS += person.personality.getS();
+			numC += person.personality.getC();
 		}
 		if (numD <= 10) {
 			bonus -= 0.1;

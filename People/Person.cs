@@ -11,13 +11,14 @@ public class Person
 
 	public enum State {working, interracting, home, sleeping}
 
-	private string name;
+	public string name { get; private set; }
+	public Personality personality { get; private set; }
+	public State state { get; private set; }
+	public Building currentBuilding { get; private set; }
+
 	private Health health;
 	private ScienceField scfield;
-	private Personality personality;
-	private State state;
-	private Building currentBuilding;
-	private Person interractee;
+
 	private ResourceBehavior resource;
 
 	public Person(string name,ScienceField.Scfield scfield,ResourceBehavior resourceBehavior){
@@ -27,18 +28,9 @@ public class Person
 		this.state = State.home;
 		this.resource = resourceBehavior;
 	}
-	public string getName(){
-		return name;
-	}
-	public Personality getPersonality(){
-		return this.personality;
-	}
+
 	public Skillset getSkillset(){
 		return scfield.getSkillset();
-	}
-		
-	public State getState(){
-		return state;
 	}
 
 	public void performInterraction ()

@@ -18,7 +18,7 @@ public class PersonBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		switch (person.getState ()) {
+		switch (person.state) {
 		case Person.State.home:
 			person.consumeResources ();
 			break;
@@ -35,7 +35,7 @@ public class PersonBehavior : MonoBehaviour {
 
 	Personality getPersonality()
 	{
-		return person.getPersonality ();
+		return person.personality;
 	}
 
 	Skillset getSkillset ()

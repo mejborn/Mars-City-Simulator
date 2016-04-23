@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-class Health
+public class Health
 {
 	// TODO: Consumption modifiers should be corresponding
 	private const double waterConsumationModifier = 0.01;
