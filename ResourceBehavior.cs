@@ -43,6 +43,13 @@ public class ResourceBehavior : MonoBehaviour {
 		buildings.AddLast (building);
 	}
 
+	public LinkedList<Person> getPeople(){
+		return this.people;
+	}
+	public LinkedList<Building> getBuildings(){
+		return this.buildings;
+	}
+
 	public void consumeResource(Resource res, double amount){
 		switch (res) {
 		case Resource.energy:
