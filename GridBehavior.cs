@@ -32,7 +32,7 @@ public class GridBehavior : MonoBehaviour {
         collisionGrid[ix, iz] = val;
     }
 
-   /* void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         for (int x = 0; x < nx; x++)
         {
