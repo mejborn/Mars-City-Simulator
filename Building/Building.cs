@@ -45,7 +45,8 @@ public class Building {
 		EnergyGenerator,
 		ResearchCenter,
 		LoadingDock,
-		Habitation
+		Habitation,
+		Connector
 	}
 	private BuildingType buildingType;
 

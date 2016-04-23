@@ -3,6 +3,7 @@ using System.Collections;
 
 class Health
 {
+	// TODO: Consumption modifiers should be corresponding
 	private readonly double waterConsumationModifier = 0.01;
 	private readonly double foodConsumationModifier = 0.01;
 	private readonly double happinessModifier = 0.1;
@@ -26,6 +27,21 @@ class Health
 		if (this.food < 25 || this.water < 25) {
 			this.happiness -= happinessModifier;
 		}
+	}
+
+	public bool addFood(){
+		if (food >= 95) {
+			return false;
+		}
+		this.food += 10;
+		return true;
+	}
+	public bool addWater(){
+		if (water >= 95) {
+			return false;
+		}
+		this.water += 10;
+		return true;
 	}
 
 	void calculateHappiness ()

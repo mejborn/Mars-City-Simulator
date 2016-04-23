@@ -1,19 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PersonBehavior : MonoBehaviour {
 	Person person;
 	Building currentBuilding;
-	Person interractee;
+
 	[SerializeField]
 	ScienceField.Scfield scienceField;
-	[SerializeField]
-	ResourceBehavior resource;
 	
 	// Use this for initialization
 	void Start () {
-		resource = GameObject.FindGameObjectWithTag("resources").GetComponent<ResourceBehavior>();
-		this.person = new Person (scienceField);
+		this.person = new Person (scienceField,GameObject.FindGameObjectWithTag("resources").GetComponent<ResourceBehavior>());
 	}
 	
 	// Update is called once per frame
@@ -28,7 +26,7 @@ public class PersonBehavior : MonoBehaviour {
 			person.performInterraction ();
 			break;
 		case Person.State.interracting:
-			person.performInterraction (interractee);
+			person.performHumanHumanInterractions ();
 			break;
 		default:
 			break;
