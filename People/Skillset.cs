@@ -3,9 +3,9 @@ using System.Collections;
 
 class Skillset
 {
-	public int science { get; }
-	public int engineering { get; }
-	public int farming { get; }
+	public int science;
+	public int engineering;
+	public int farming;
 
 	public Skillset(int science, int engineering, int farming){
 		this.science = science;

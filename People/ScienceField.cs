@@ -4,9 +4,10 @@ using System.Collections;
 class ScienceField
 {
 	private Scfield scfield;
-	private Skillset skillset { 
-		get;
-		set;
+	private Skillset skillset;
+
+	public Skillset getSkillset(){
+		return skillset;
 	}
 
 	public enum Scfield 
