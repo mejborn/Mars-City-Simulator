@@ -14,7 +14,7 @@ class Person
 	public Personality getPersonality(){
 		return this.personality;
 	}
-//	public Skillset getSkillset(){
-		//return ScienceField.skillset;
-//	}
+	public Skillset getSkillset(){
+		return scfield.getSkillset();
+	}
 }
