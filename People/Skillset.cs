@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-class Skillset
+public class Skillset
 {
 	public int science;
 	public int engineering;
