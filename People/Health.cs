@@ -4,9 +4,9 @@ using System.Collections;
 class Health
 {
 	// TODO: Consumption modifiers should be corresponding
-	private readonly double waterConsumationModifier = 0.01;
-	private readonly double foodConsumationModifier = 0.01;
-	private readonly double happinessModifier = 0.1;
+	private const double waterConsumationModifier = 0.01;
+	private const double foodConsumationModifier = 0.01;
+	private const double happinessModifier = 0.1;
 
 	enum Mood {Thriving, Happy, Medior, Sad, Angry, Furious};
 	private Mood mood { get; set; }

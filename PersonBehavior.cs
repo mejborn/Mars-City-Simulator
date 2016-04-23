@@ -25,9 +25,6 @@ public class PersonBehavior : MonoBehaviour {
 		case Person.State.working:
 			person.performInterraction ();
 			break;
-		case Person.State.interracting:
-			person.performHumanHumanInterractions ();
-			break;
 		default:
 			break;
 		}

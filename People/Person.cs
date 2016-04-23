@@ -6,8 +6,8 @@ using System.Linq;
 
 public class Person
 {
-	private readonly double waterConsumationModifier = 0.01;
-	private readonly double foodConsumationModifier = 0.01;
+	private const double waterConsumationModifier = 0.01;
+	private const double foodConsumationModifier = 0.01;
 
 	public enum State {working, interracting, home, sleeping}
 
@@ -18,14 +18,12 @@ public class Person
 	private Building currentBuilding;
 	private Person interractee;
 	private ResourceBehavior resource;
-	private LinkedList<Person> neighbours;
 
 	public Person(ScienceField.Scfield scfield,ResourceBehavior resourceBehavior){
 		this.scfield = new ScienceField(scfield);
 		this.personality = new Personality ();
 		this.state = State.home;
 		this.resource = resourceBehavior;
-		this.neighbours = new LinkedList<Person> ();
 	}
 	public Personality getPersonality(){
 		return this.personality;
@@ -41,11 +39,6 @@ public class Person
 	public void performInterraction ()
 	{
 		currentBuilding.performWork (this);
-	}
-
-	public void performHumanHumanInterractions ()
-	{
-		throw new NotImplementedException ();
 	}
 
 	public bool enterBuilding(Building building){
