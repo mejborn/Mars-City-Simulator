@@ -15,4 +15,15 @@ public class CreatePerson : MonoBehaviour {
 	void Update () {
 	
 	}
+
+	Personality getPersonality()
+	{
+		return person.getPersonality ();
+	}
+
+//	Skillset getSkillset ()
+//	{
+//		return person.getSkillset ();
+//	}
+
 }
