@@ -41,9 +41,11 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                 this.transform.position = worldPosition;
 
                 bool isPlacable = true;
-                for (int x = 0; x < building.GetComponent<BuildingBehavior>().extendsX; x++)
+                int extendsX = building.GetComponent<BuildingBehavior>().extendsX;
+                int extendsZ = building.GetComponent<BuildingBehavior>().extendsZ;
+                for (int x = -extendsX/2; x <= extendsX/2; x++)
                 {
-                    for (int z = 0; z < building.GetComponent<BuildingBehavior>().extendsZ; z++)
+                    for (int z = -extendsZ/2; z <= extendsZ/2; z++)
                     {
                         if (grid.CheckCollision(worldPosition.x + x, worldPosition.z + z))
                         {
@@ -59,9 +61,9 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                     if (currentMouseState && !lastMouseState)
                     {
                         Instantiate(building, worldPosition, Quaternion.identity);
-                        for (int x = 0; x < building.GetComponent<BuildingBehavior>().extendsX; x++)
+                        for (int x = -extendsX/2; x <= extendsX/2; x++)
                         {
-                            for (int z = 0; z < building.GetComponent<BuildingBehavior>().extendsZ; z++)
+                            for (int z = -extendsZ/2; z <= extendsZ/2; z++)
                             {
                                 grid.SetCollision(worldPosition.x + x, worldPosition.z + z, true);
                             }
