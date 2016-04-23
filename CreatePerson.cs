@@ -21,9 +21,9 @@ public class CreatePerson : MonoBehaviour {
 		return person.getPersonality ();
 	}
 
-//	Skillset getSkillset ()
-//	{
-//		return person.getSkillset ();
-//	}
+	Skillset getSkillset ()
+	{
+		return person.getSkillset ();
+	}
 
 }
