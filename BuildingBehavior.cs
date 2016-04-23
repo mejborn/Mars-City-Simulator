@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BuildingBehavior : MonoBehaviour {
 	Building building;
 
 	[SerializeField]
-	Building.BuildingType buildingType;
+	public Building.BuildingType buildingType;
 	[SerializeField]
 	ResourceBehavior resource;
 	[SerializeField]
     public int extendsX = 2;
     [SerializeField]
     public int extendsZ = 2;
-
+    [SerializeField]
+    public List<Vector2> entrances;
+    
     // Use this for initialization
     void Start () {
 		this.building = new Building (buildingType);
-		resource.addBuilding (building);
+		//resource.addBuilding (building);
 	}
 	
 	// Update is called once per frame
@@ -24,7 +27,7 @@ public class BuildingBehavior : MonoBehaviour {
 	
 	}
 
-	string getType(){
-		return building.getBuildingType().ToString();
+	public Building.BuildingType getType(){
+		return buildingType;
 	}
 }

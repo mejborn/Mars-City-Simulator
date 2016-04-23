@@ -40,7 +40,6 @@ public class BuildingPlacerBehavior : MonoBehaviour {
             }
         }
 
-
         if (Input.GetMouseButton(1) && isBuilding)
         {
             isBuilding = false;
@@ -50,6 +49,7 @@ public class BuildingPlacerBehavior : MonoBehaviour {
         if (isBuilding)
         {
             filter.sharedMesh = buildings[building].GetComponent<MeshFilter>().sharedMesh;
+            transform.localScale = buildings[building].transform.localScale;
 
             RaycastHit[] hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition));
 
@@ -57,24 +57,29 @@ public class BuildingPlacerBehavior : MonoBehaviour {
             {
                 if (h.collider.gameObject.GetComponents<Terrain>().Length > 0)
                 {
+                    bool isPlacable = true;
+                    int extendsX = buildings[building].GetComponent<BuildingBehavior>().extendsX;
+                    int extendsZ = buildings[building].GetComponent<BuildingBehavior>().extendsZ;
+
                     Vector3 worldPosition = h.point;
                     worldPosition.x = Mathf.Round(worldPosition.x) - 0.5f;
                     worldPosition.z = Mathf.Round(worldPosition.z) - 0.5f;
                     this.transform.position = worldPosition;
 
-                    bool isPlacable = true;
-                    int extendsX = buildings[building].GetComponent<BuildingBehavior>().extendsX;
-                    int extendsZ = buildings[building].GetComponent<BuildingBehavior>().extendsZ;
+                    Building.BuildingType bType = buildings[building].GetComponent<BuildingBehavior>().getType();
 
-                    for (int x = -extendsX / 2; x <= extendsX / 2; x++)
+                    for (int x = 0; x < extendsX;  x++)
                     {
-                        for (int z = -extendsZ / 2; z <= extendsZ / 2; z++)
+                        for (int z = 0; z < extendsZ; z++)
                         {
-                            float ix = (((Mathf.Round(worldPosition.x + x + 0.5f)) * terrain.terrainData.heightmapWidth / terrain.terrainData.size.x) + terrain.terrainData.heightmapWidth / 2) / terrain.terrainData.heightmapWidth;
-                            float iz = (((Mathf.Round(worldPosition.z + z + 0.5f)) * terrain.terrainData.heightmapHeight / terrain.terrainData.size.z) + terrain.terrainData.heightmapHeight / 2) / terrain.terrainData.heightmapHeight;
+                            float ix = (((Mathf.Round(worldPosition.x + x + 0.5f) - extendsZ / 2) * terrain.terrainData.heightmapWidth / terrain.terrainData.size.x) + terrain.terrainData.heightmapWidth / 2) / terrain.terrainData.heightmapWidth;
+                            float iz = (((Mathf.Round(worldPosition.z + z + 0.5f) - extendsX / 2) * terrain.terrainData.heightmapHeight / terrain.terrainData.size.z) + terrain.terrainData.heightmapHeight / 2) / terrain.terrainData.heightmapHeight;
 
                             float steepness = terrain.terrainData.GetSteepness(ix, iz);
-                            if (grid.CheckCollision(worldPosition.z + z, worldPosition.x + x) != 0 || steepness > 20f)
+                            int gridType = grid.CheckCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2);
+
+                            if ((bType == Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Connector) || (bType != Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Free) || steepness > 20f)
+                            //if ((bType != Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Free) || steepness > 20f)
                             {
                                 isPlacable = false;
                                 break;
@@ -88,16 +93,22 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                         if (currentMouseState && !lastMouseState)
                         {
                             Instantiate(buildings[building], worldPosition, Quaternion.identity);
-                            for (int x = -extendsX / 2; x <= extendsX / 2; x++)
+                            for (int x = 0; x < extendsX; x++)
                             {
-                                for (int z = -extendsZ / 2; z <= extendsZ / 2; z++)
+                                for (int z = 0; z < extendsZ; z++)
                                 {
-                                    grid.SetCollision(worldPosition.x + x, worldPosition.z + z, (int)GridBehavior.GridElement.Building);
+                                    grid.SetCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2, (int)GridBehavior.GridElement.Building);
 
-                                    int ix = (int)((Mathf.Round(worldPosition.x + x + 0.5f)) * terrain.terrainData.heightmapWidth / terrain.terrainData.size.x) + terrain.terrainData.heightmapWidth / 2;
-                                    int iz = (int)((Mathf.Round(worldPosition.z + z + 0.5f)) * terrain.terrainData.heightmapHeight / terrain.terrainData.size.z) + terrain.terrainData.heightmapHeight / 2;
+                                    int ix = (int)((Mathf.Round(worldPosition.x + x + 0.5f - extendsX / 2)) * terrain.terrainData.heightmapWidth / terrain.terrainData.size.x) + terrain.terrainData.heightmapWidth / 2;
+                                    int iz = (int)((Mathf.Round(worldPosition.z + z + 0.5f - extendsZ / 2)) * terrain.terrainData.heightmapHeight / terrain.terrainData.size.z) + terrain.terrainData.heightmapHeight / 2;
                                     heights[iz, ix] = worldPosition.y / terrain.terrainData.size.y;
                                 }
+                            }
+
+                            foreach (Vector2 en in buildings[building].GetComponent<BuildingBehavior>().entrances)
+                            {
+                                if (grid.CheckCollision(worldPosition.x + en.x, worldPosition.z + en.y) == (int)GridBehavior.GridElement.Free)
+                                    grid.SetCollision(worldPosition.x + en.x, worldPosition.z + en.y, (int)GridBehavior.GridElement.Connector);
                             }
                             //terrain.terrainData.SetHeights(0, 0, heights);
 
