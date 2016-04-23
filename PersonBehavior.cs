@@ -11,7 +11,7 @@ public class PersonBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		this.person = new Person (scienceField,GameObject.FindGameObjectWithTag("resources").GetComponent<ResourceBehavior>());
+		this.person = new Person (scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>());
 	}
 	
 	// Update is called once per frame
