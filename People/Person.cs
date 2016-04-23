@@ -27,6 +27,9 @@ public class Person
 		this.state = State.home;
 		this.resource = resourceBehavior;
 	}
+	public string getName(){
+		return name;
+	}
 	public Personality getPersonality(){
 		return this.personality;
 	}
