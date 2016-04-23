@@ -17,6 +17,8 @@ public class BuildingBehavior : MonoBehaviour {
 	[SerializeField]
 	public List<Vector2> entrances;
 
+    public bool isActive;
+
 	void Awake(){
 		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
 		this.building = new Building (buildingType);
@@ -24,8 +26,7 @@ public class BuildingBehavior : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ();
-		this.building = new Building (buildingType);
+
 		//resource.addBuilding (building);
 	}
 	
