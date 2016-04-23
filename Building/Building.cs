@@ -24,7 +24,7 @@ class Building {
 
 	public void performWork (Person person)
 	{
-		Skillset skillset = person.getSkillset;
+		Skillset skillset = person.getSkillset ();
 
 		switch (buildingType) {
 		case BuildingType.Growhouse:
