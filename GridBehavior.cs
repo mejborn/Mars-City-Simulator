@@ -7,13 +7,13 @@ public class GridBehavior : MonoBehaviour {
 
     public enum GridElement
     {
+        Free,
         Connector,
         Building
     }
 
     void Start()
     {
-
     }
 
     public int CheckCollision(float x, float z)
@@ -32,21 +32,23 @@ public class GridBehavior : MonoBehaviour {
         collisionGrid[ix, iz] = val;
     }
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         for (int x = 0; x < nx; x++)
         {
             for (int z = 0; z < nx; z++)
             {
-                if (collisionGrid[x,z] != 0)
+                if (collisionGrid[x, z] == (int)GridBehavior.GridElement.Connector)
+                    Gizmos.color = Color.blue;
+                else if (collisionGrid[x,z] != 0)
                     Gizmos.color = Color.red;
                 else
                     Gizmos.color = Color.green;
 
-                //Gizmos.DrawCube(new Vector3(x - nx / 2 + 0.5f, 10, z - nx / 2 + 0.5f), Vector3.one * 0.5f);
+                Gizmos.DrawCube(new Vector3(x - nx / 2 + 0.5f, 0, z - nx / 2 + 0.5f), Vector3.one * 0.5f);
             }
         }
 
-    }
+    }*/
 }
 

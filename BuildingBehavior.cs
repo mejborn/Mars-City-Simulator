@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BuildingBehavior : MonoBehaviour {
 	Building building;
@@ -7,19 +8,25 @@ public class BuildingBehavior : MonoBehaviour {
 	[SerializeField]
 	Building.BuildingType buildingType;
 	Resource resource;
+
 	[SerializeField]
     public int extendsX = 2;
     [SerializeField]
     public int extendsZ = 2;
 
+	[SerializeField]
+	public List<Vector2> entrances;
+
 	void Awake(){
 		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
 		this.building = new Building (buildingType);
 	}
-
+    
     // Use this for initialization
     void Start () {
-		resource.addBuilding (building);
+		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ();
+		this.building = new Building (buildingType);
+		//resource.addBuilding (building);
 	}
 	
 	// Update is called once per frame
@@ -27,7 +34,7 @@ public class BuildingBehavior : MonoBehaviour {
 	
 	}
 
-	string getType(){
-		return building.getBuildingType().ToString();
+	public Building.BuildingType getType(){
+		return buildingType;
 	}
 }
