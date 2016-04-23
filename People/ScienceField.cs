@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-class ScienceField
+public class ScienceField
 {
 	private Scfield scfield;
 	private Skillset skillset;

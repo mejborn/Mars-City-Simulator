@@ -4,12 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-class Person
+public class Person
 {
+	public enum State {working, interracting, home, sleeping}
+
 	private Health health;
 	private ScienceField scfield;
 	private Personality personality;
-	private enum State {working, home, sleeping}
 	private State state;
 
 	public Person(ScienceField.Scfield scfield){
@@ -24,13 +25,28 @@ class Person
 		return scfield.getSkillset();
 	}
 		
-	void performInterraction (Person person)
+	public void performInterraction (Person person)
 	{
 		throw new NotImplementedException ();
 	}
 
-	void performInterraction (Building building)
+	public State getState(){
+		return state;
+	}
+
+	public void performInterraction (Building building)
 	{
 		building.performWork (this);
 	}
+
+	public void consumeResources ()
+	{
+		throw new NotImplementedException ();
+	}
+
+	public void updateHealth ()
+	{
+		throw new NotImplementedException ();
+	}
+
 }

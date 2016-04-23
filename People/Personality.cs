@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-class Personality
+public class Personality
 {
 	int D,I,S,C;
 	public Personality()

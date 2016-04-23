@@ -1,8 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-class Building {
-	private float revenue;
+public class Building {
+	private double revenue;
+	public int consume ()
+	{
+		int tmp = 0;
+		if (revenue > 1) {
+			tmp = (int)revenue;
+			revenue = revenue % 1;
+		}
+		return tmp;
+	}
+
 	public enum BuildingType 
 	{
 		Growhouse,
@@ -28,7 +38,7 @@ class Building {
 
 		switch (buildingType) {
 		case BuildingType.Growhouse:
-			revenue += skillset.farming;
+			revenue += (0.01 * skillset.farming);
 			break;
 		default:
 			break;
