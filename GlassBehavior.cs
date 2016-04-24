@@ -16,7 +16,7 @@ public class GlassBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (skylight != null && parentBuilding != null && parentBuilding.isActive)
-            GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", emissionColor * (Mathf.Cos(skylight.currentTimeOfDay * 2 * Mathf.PI) * 0.5f + 0.5f));
+            GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", emissionColor * ((Mathf.Cos(skylight.currentTimeOfDay * 2 * Mathf.PI) * 0.5f + 0.5f) + (Mathf.Cos(skylight.currentTimeOfDay * 10.0f * Mathf.PI) * 0.05f - 0.05f)));
         else
             GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", Color.black);
 
