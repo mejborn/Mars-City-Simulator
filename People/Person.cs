@@ -8,8 +8,8 @@ public class Person
 {
 	private const double waterConsumptionModifier = 2;
 	private const double foodConsumptionModifier = 1;
-	private const double poopGeneratorModifier = 1;
-	private const double peeGeneratorModifier = 1;
+	private const double poopGeneratorModifier = .1;
+	private const double peeGeneratorModifier = .18;
 
 	public enum State {working, interracting, home, sleeping}
 

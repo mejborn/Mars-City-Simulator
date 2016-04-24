@@ -26,18 +26,17 @@ public class ResourceBehavior : MonoBehaviour {
     public enum Resources {food,water,energy,wastePoop,wastePee,soil,dirt,science,money};
 	public Resource resource { get; private set; }
 
-
 	void Awake(){
-		this.resource = new Resource (food, water, energy, wastePoop, wastePee, soil, dirt, science, money);
-		foreach (GameObject go in FindObjectsOfType<GameObject>()) {
-				resource.gameObjects.Add (go.GetInstanceID(), go.GetComponent<Building>());
-		}
-	}
+        resource = new Resource (food, water, energy, wastePoop, wastePee, soil, dirt, science, money);
+        //foreach (GameObject go in FindObjectsOfType<GameObject>()) {
+        //		resource.gameObjects.Add (go.GetInstanceID(), go.GetComponent<Building>());
+        //}
+    }
 
 	// Use this for initialization
 	void Start () {
 		resource.setupDropDownMenu ();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -49,16 +48,16 @@ public class ResourceBehavior : MonoBehaviour {
         GUI.skin.label.fontSize = 12;
         GUI.contentColor = Color.white;
         GUI.skin.label.fontStyle = FontStyle.Bold;
-        GUI.Box(new Rect(20, 100, 100, 115), "Resources");
+        GUI.Box(new Rect(0, Screen.height - 175, 200, 200), "Resources");
         GUI.skin.label.fontStyle = FontStyle.Normal;
-        GUI.Label(new Rect(25, 120, 100, 100), "Energy: " + ((int)resource.energy));
-        GUI.Label(new Rect(25, 135, 100, 100), "Food: " + ((int)resource.food));
-        GUI.Label(new Rect(25, 150, 100, 100), "Money: " + ((int)resource.money));
-        GUI.Label(new Rect(25, 150, 100, 100), "Dirt: " + ((int)resource.dirt));
-        GUI.Label(new Rect(25, 165, 100, 100), "Science: " + ((int)resource.science));
-        GUI.Label(new Rect(25, 180, 100, 100), "Waste (Poop): " + ((int)resource.wastePoop));
-        GUI.Label(new Rect(25, 180, 100, 100), "Waste (Pee): " + ((int)resource.wastePee));
-        GUI.Label(new Rect(25, 195, 100, 100), "Soil: " + ((int)resource.soil));
-        GUI.Label(new Rect(25, 195, 100, 100), "Water: " + ((int)resource.water));
+        GUI.Label(new Rect(25, Screen.height - 120 - 30, 200, 100), "Energy: " + ((int)resource.energy));
+        GUI.Label(new Rect(25, Screen.height - 105 - 30, 200, 100), "Food: " + ((int)resource.food));
+        GUI.Label(new Rect(25, Screen.height - 90 - 30, 200, 100), "Money: " + ((int)resource.money));
+        GUI.Label(new Rect(25, Screen.height - 75 - 30, 200, 100), "Dirt: " + ((int)resource.dirt));
+        GUI.Label(new Rect(25, Screen.height - 60 - 30, 200, 100), "Science: " + ((int)resource.science));
+        GUI.Label(new Rect(25, Screen.height - 45 - 30, 200, 100), "Waste (Poop): " + ((int)resource.wastePoop));
+        GUI.Label(new Rect(25, Screen.height - 30 - 30, 200, 100), "Waste (Pee): " + ((int)resource.wastePee));
+        GUI.Label(new Rect(25, Screen.height - 15 - 30, 200, 100), "Soil: " + ((int)resource.soil));
+        GUI.Label(new Rect(25, Screen.height - 0 - 30, 200, 100), "Water: " + ((int)resource.water));
     }
 }

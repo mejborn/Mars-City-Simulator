@@ -33,7 +33,7 @@ public class Resource {
 
 		this.buildings = new LinkedList<Building> ();
 		this.people = new LinkedList<Person> ();
-	}
+    }
 
 	public void setupDropDownMenu(){
 		dp = GameObject.Find("Dropdown_People").GetComponent<Dropdown> ();
@@ -55,8 +55,11 @@ public class Resource {
 		foreach (Person person in this.people){
 			dp.options.Add (new Dropdown.OptionData() {text = person.name} );
 		}
-		foreach (Building building in this.buildings) {
-			if (!(Building.BuildingType.Connector.Equals(building.getBuildingType()))) {
+		foreach (Building building in this.buildings) {			
+			if (!(Building.BuildingType.Connector.Equals(building.getBuildingType())
+				|| Building.BuildingType.Drill.Equals(building.getBuildingType())
+					|| Building.BuildingType.SolarPanel.Equals(building.getBuildingType())))
+            {
 				db.options.Add (new Dropdown.OptionData () { text = building.getBuildingType ().ToString () });
 			}
 		}
@@ -67,36 +70,36 @@ public class Resource {
 		foreach (Building building in buildings) {
 			switch (building.getBuildingType()) {
 			case Building.BuildingType.Habitation:
-				energy -= building.consume (Resources.energy);
+				energy += building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.Growhouse:
 				food += building.consume (Resources.food);
-				water -= building.consume (Resources.water);
-				soil -= building.consume (Resources.soil);
-				energy -= building.consume (Resources.energy);
+				water += building.consume (Resources.water);
+				soil += building.consume (Resources.soil);
+				energy += building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.SolarPanel:
 				energy += building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.ResearchCenter:
 				science += building.consume (Resources.science);
-				water -= building.consume (Resources.water);
-				energy -= building.consume (Resources.energy);
+				water += building.consume (Resources.water);
+				energy += building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.WaterTreatment:
 				food += building.consume (Resources.food);
 				water += building.consume (Resources.water);
 				soil += building.consume (Resources.soil);
-				wastePoop -= building.consume (Resources.wastePoop);
-				wastePee -= building.consume (Resources.wastePee);
-				dirt -= building.consume (Resources.dirt);
-				energy -= building.consume (Resources.energy);
+				wastePoop += building.consume (Resources.wastePoop);
+				wastePee += building.consume (Resources.wastePee);
+				dirt += building.consume (Resources.dirt);
+				energy += building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.Drill:
 				water += building.consume (Resources.water);
 				science += building.consume (Resources.science);
 				dirt += building.consume (Resources.dirt);
-				energy -= building.consume (Resources.energy);
+				energy += building.consume (Resources.energy);
 				break;
 			default:
 				break;
@@ -135,7 +138,7 @@ public class Resource {
 			break;
 		}
 		if (Resource.Resources.science > 0) {
-			money += (science * 10000000);
+			money += (science * 1);
 			science = 0;
 		}
 	}

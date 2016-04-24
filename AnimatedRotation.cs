@@ -12,7 +12,7 @@ public class AnimatedRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (parentBuilding.isActive)
+		if (parentBuilding.building.isActive)
         {
             rotation += 0.1f;
             this.transform.rotation = Quaternion.Euler(0, rotation, 0);
