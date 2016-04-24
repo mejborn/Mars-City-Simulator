@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour {
 
     public void StartGame()
     {
-       SceneManager.LoadScene("MainLevel");
+       SceneManager.LoadScene("Mars");
     }
 
     public void OptionPress()
