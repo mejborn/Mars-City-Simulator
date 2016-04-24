@@ -4,22 +4,23 @@ using System.Collections;
 public class Health
 {
 	// TODO: Consumption modifiers should be corresponding
-	private const double waterConsumationModifier = 0.01;
-	private const double foodConsumationModifier = 0.01;
+	private const double waterConsumationModifier = 0.05;
+	private const double foodConsumationModifier = 0.05;
 	private const double happinessModifier = 0.1;
 
 	enum Mood {Thriving, Happy, Medior, Sad, Angry, Furious};
 	private Mood mood { get; set; }
-	private double food;
-	private double water;
-	private double happiness;
+	public double food;
+    public double water;
+    public double happiness;
 
 	public Health(){
-		this.food = 100;
-		this.water = 100;
+		this.food = 10;
+		this.water = 10;
 		this.mood = Mood.Thriving;
 		calculateHappiness ();
-	}
+        this.happiness = 10;
+    }
 
 	public void update(){
 		this.water -= waterConsumationModifier;
@@ -30,14 +31,15 @@ public class Health
 	}
 
 	public bool addFood(){
-		if (food >= 95) {
+        if (food >= 90) {
 			return false;
 		}
 		this.food += 10;
 		return true;
 	}
+
 	public bool addWater(){
-		if (water >= 95) {
+		if (water >= 90) {
 			return false;
 		}
 		this.water += 10;
@@ -46,7 +48,7 @@ public class Health
 
 	void calculateHappiness ()
 	{
+        
 		//throw new System.NotImplementedException ();
 	}
-
 }

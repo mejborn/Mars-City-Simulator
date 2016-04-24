@@ -39,4 +39,11 @@ public class PersonBehavior : MonoBehaviour {
 		return person.getSkillset ();
 	}
 
+    void OnGUI()
+    {
+        GUI.skin.label.fontSize = 12;
+        GUI.contentColor = Color.black;
+        GUI.Label(new Rect(25, 225, 100, 100), "Food: " + person.health.food.ToString("F"));
+        GUI.Label(new Rect(25, 240, 100, 100), "Happiness: " + person.health.happiness.ToString("F"));
+    }
 }

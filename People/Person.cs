@@ -6,8 +6,8 @@ using System.Linq;
 
 public class Person
 {
-	private const double waterConsumationModifier = 0.01;
-	private const double foodConsumationModifier = 0.01;
+	private const double waterConsumationModifier = 0.5;
+	private const double foodConsumationModifier = 0.5;
 
 	public enum State {working, interracting, home, sleeping}
 
@@ -16,7 +16,7 @@ public class Person
 	public State state { get; private set; }
 	public Building currentBuilding { get; private set; }
 
-	private Health health;
+	public Health health;
 	private ScienceField scfield;
 
 	private Resource resource;
@@ -30,7 +30,8 @@ public class Person
 		this.resource = resource;
 		this.resource.addPerson (this);
 		this.resource.setupDropDownMenu ();
-	}
+
+    }
 
 	public void UpdateState ()
 	{
@@ -72,10 +73,10 @@ public class Person
 
 	public void consumeResources ()
 	{
-		if (health.addFood()) {
+		if (resource.food > foodConsumationModifier && health.addFood()) {
 			resource.consumeResource (Resource.Resources.food, foodConsumationModifier);
 		}
-		if (health.addWater()) {
+		if (resource.water > waterConsumationModifier && health.addWater()) {
 			resource.consumeResource (Resource.Resources.water, waterConsumationModifier);
 		}
 	}
@@ -84,5 +85,6 @@ public class Person
 	{
 		health.update ();
 	}
+
 
 }
