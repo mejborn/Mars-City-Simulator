@@ -53,8 +53,16 @@ public class CameraBehavior : MonoBehaviour {
             this.transform.position += forward3D * Input.GetAxis("Mouse ScrollWheel") * zoomSpeed * Time.deltaTime;
 
         if (currentMouseWheel)
+        {
             this.transform.RotateAround(rotationPoint, Vector3.up, -(currentMousePosition.x - lastMousePosition.x) * rotationSpeed * Time.deltaTime);
+            this.transform.RotateAround(rotationPoint, left, -(currentMousePosition.y - lastMousePosition.y) * rotationSpeed * Time.deltaTime);
+        }
 
+        Vector3 tempVec = transform.position;
+        if (tempVec.y > 100)
+            tempVec.y = 100;
+
+        this.transform.position = tempVec;
 
         lastMousePosition = currentMousePosition;
         lastMouseWheel = currentMouseWheel;

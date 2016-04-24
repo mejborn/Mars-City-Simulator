@@ -57,8 +57,9 @@ public class Resource {
 		}
 		foreach (Building building in this.buildings) {			
 			if (!(Building.BuildingType.Connector.Equals(building.getBuildingType())
-				|| Building.BuildingType.Drill.Equals(building.getBuildingType()
-					|| Building.BuildingType.SolarPanel.Equals(building.getBuildingType())))) {
+				|| Building.BuildingType.Drill.Equals(building.getBuildingType())
+					|| Building.BuildingType.SolarPanel.Equals(building.getBuildingType())))
+            {
 				db.options.Add (new Dropdown.OptionData () { text = building.getBuildingType ().ToString () });
 			}
 		}
