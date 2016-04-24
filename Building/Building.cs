@@ -7,36 +7,36 @@ public class Building {
 	public enum BuildingType 
 	{
 		Growhouse,
-		WaterTreatment,
-		WasteTreatment,
-		EnergyGenerator,
-		ResearchCenter,
-		LoadingDock,
+		Connector,
 		Habitation,
-		Connector
+		SolarPanel,
+		LandingPad,
+		ResearchCenter,
+		WaterTreatment,
+		Drill
 	}
-
 	public BuildingType buildingType;
 
-	private double revenue;
+	private double food = 0, water = 0, soil = 0, science = 0, energy = 0;
+
+
+	LinkedList<double> revenue;
 	private LinkedList<Person> occupants;
 	private int maxOccupants = 4;
 	private int currentOccupants = 0;
 
 
 	public Building(BuildingType bt){
-		this.revenue = 0;
 		this.buildingType = bt;
-
         occupants = new LinkedList<Person>();
     }
 
-	public int consume ()
+	public int consume (Resource.Resources res)
 	{
 		int tmp = 0;
-		if (revenue > 1) {
-			tmp = (int)revenue;
-			revenue = revenue % 1;
+		if (food > 1) {
+			tmp = (int)food;
+			food = food % 1;
 		}
 		return tmp;
 	}
@@ -73,6 +73,15 @@ public class Building {
 		switch (buildingType) {
 		case BuildingType.Growhouse:
 			revenue += (productionRate * skillset.farming * DISCfactor);
+			break;
+		case BuildingType.ResearchCenter:
+			revenue += (productionRate * skillset.science * DISCfactor);
+			break;
+		case BuildingType.WaterTreatment:
+			revenue += (productionRate * skillset.engineering * DISCfactor);
+			break;
+		case BuildingType.Drill:
+			revenue += (productionRate * skillset.engineering * DISCfactor);
 			break;
 		default:
 			break;

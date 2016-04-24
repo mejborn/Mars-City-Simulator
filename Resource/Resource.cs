@@ -59,19 +59,19 @@ public class Resource {
 	{
 		foreach (Building building in buildings) {
 			switch (building.getBuildingType()) {
-			case Building.BuildingType.EnergyGenerator:
-				energy += building.consume ();
-				break;
 			case Building.BuildingType.Growhouse:
 				food += building.consume ();
+				break;
+			case Building.BuildingType.SolarPanel:
+				energy += building.consume ();
 				break;
 			case Building.BuildingType.ResearchCenter:
 				science += building.consume ();
 				break;
-			case Building.BuildingType.WasteTreatment:
-				break;
 			case Building.BuildingType.WaterTreatment:
 				water += building.consume ();
+				break;
+			case Building.BuildingType.Drill:
 				break;
 			default:
 				break;
@@ -95,8 +95,8 @@ public class Resource {
 			this.energy -= amount;
 			break;
 		case Resource.Resources.food:
-                this.food -= amount;
-                break;
+            this.food -= amount;
+            break;
 		case Resource.Resources.money:
 			this.money -= amount;
 			break;
