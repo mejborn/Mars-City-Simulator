@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,14 +12,16 @@ public class PersonBehavior : MonoBehaviour {
 	[SerializeField]
 	public string pname = "testguy1";
 
-	void Awake(){
+    private Dropdown dp;
+
+    void Awake(){
 		this.person = new Person (pname,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
 	}
 
 	// Use this for initialization
 	void Start () {
-
-	}
+        dp = GameObject.Find("Dropdown_People").GetComponent<Dropdown>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,9 +44,16 @@ public class PersonBehavior : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.skin.label.fontSize = 12;
-        GUI.contentColor = Color.black;
-        GUI.Label(new Rect(25, 225, 100, 100), "Food: " + person.health.food.ToString("F"));
-        GUI.Label(new Rect(25, 240, 100, 100), "Happiness: " + person.health.happiness.ToString("F"));
+        if (dp.captionText.text == person.name)
+        {
+            GUI.skin.label.fontSize = 12;
+            GUI.skin.label.fontStyle = FontStyle.Bold;
+            GUI.contentColor = Color.white;
+            GUI.Label(new Rect(25, 225, 100, 100), "Settler: " + person.name);
+            GUI.skin.label.fontStyle = FontStyle.Normal;
+            GUI.Label(new Rect(25, 240, 100, 100), "Food: " + ((int)person.health.food));
+            GUI.Label(new Rect(25, 255, 100, 100), "Water: " + ((int)person.health.water));
+            GUI.Label(new Rect(25, 270, 100, 100), "Happiness: " + ((int)person.health.happiness));
+        }
     }
 }
