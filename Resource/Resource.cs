@@ -33,7 +33,7 @@ public class Resource {
 
 		this.buildings = new LinkedList<Building> ();
 		this.people = new LinkedList<Person> ();
-	}
+    }
 
 	public void setupDropDownMenu(){
 		dp = GameObject.Find("Dropdown_People").GetComponent<Dropdown> ();

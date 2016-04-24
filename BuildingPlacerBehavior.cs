@@ -96,7 +96,7 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                             {
                                 for (int z = 0; z < extendsZ; z++)
                                 {
-                                    grid.SetCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2, tmp.GetInstanceID());
+                                    grid.SetCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2, ((GameObject)tmp).GetComponent<BuildingBehavior>().GetInstanceID());
 
 
                                     int ix = (int)((Mathf.Round(worldPosition.x + x + 0.5f - extendsX / 2)) * terrain.terrainData.heightmapWidth / terrain.terrainData.size.x) + terrain.terrainData.heightmapWidth / 2;

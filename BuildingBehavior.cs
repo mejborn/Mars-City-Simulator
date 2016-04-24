@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BuildingBehavior : MonoBehaviour {
-	Building building;
+	public Building building { get; private set; }
 
 	[SerializeField]
 	Building.BuildingType buildingType;
@@ -17,21 +17,17 @@ public class BuildingBehavior : MonoBehaviour {
 	[SerializeField]
 	public List<Vector2> entrances;
 
-    public bool isActive;
 	int id;
     
 	void Awake(){
 		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
 		this.building = new Building (buildingType);
 		resource.addBuilding (building);
-		resource.gameObjects.Add (this.GetInstanceID(), this.GetComponent<Building>());
-	}
+		resource.gameObjects.Add (this.GetInstanceID(), this.building);
+    }
     
     // Use this for initialization
     void Start () {
-        if (buildingType == Building.BuildingType.Habitation)
-            isActive = true;
-		//resource.addBuilding (building);
 	}
 	
 	// Update is called once per frame

@@ -26,18 +26,17 @@ public class ResourceBehavior : MonoBehaviour {
     public enum Resources {food,water,energy,wastePoop,wastePee,soil,dirt,science,money};
 	public Resource resource { get; private set; }
 
-
 	void Awake(){
-		this.resource = new Resource (food, water, energy, wastePoop, wastePee, soil, dirt, science, money);
-		foreach (GameObject go in FindObjectsOfType<GameObject>()) {
-				resource.gameObjects.Add (go.GetInstanceID(), go.GetComponent<Building>());
-		}
-	}
+        resource = new Resource (food, water, energy, wastePoop, wastePee, soil, dirt, science, money);
+        //foreach (GameObject go in FindObjectsOfType<GameObject>()) {
+        //		resource.gameObjects.Add (go.GetInstanceID(), go.GetComponent<Building>());
+        //}
+    }
 
 	// Use this for initialization
 	void Start () {
 		resource.setupDropDownMenu ();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
