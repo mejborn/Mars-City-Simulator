@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Building {
 	const double productionRate = 0.01;
 
-	private BuildingType buildingType;
+	public BuildingType buildingType;
 
 	private double revenue;
 	private LinkedList<Person> occupants;
