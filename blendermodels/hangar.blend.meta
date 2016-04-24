@@ -1,4 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 5bd199afc5b2efc41a95e1432d359d32
+timeCreated: 1461486818
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName: {}
+=======
 guid: 008484e206d728e4faf81781f7d0aa79
 timeCreated: 1461472746
 licenseType: Free
@@ -12,6 +20,7 @@ ModelImporter:
     4300000: Cube
     7400000: Default Take
     9500000: //RootNode
+>>>>>>> 5f3fec7a635e3764f6762544c1767c45eb8a20e7
   materials:
     importMaterials: 1
     materialName: 0

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour {
     List<string> namesList = new List<string>();
@@ -18,13 +19,14 @@ public class MainMenu : MonoBehaviour {
     public Button exitText;
 
     public Button scientist;
-    public Button engenieer;
+    public Button engineer;
     public Button farmer;
     public Button tourist;
     public Button astronaut;
 
     public Button createPlayer;
 
+    string sciField;
     string playerName;
 
     // Use this for initialization
@@ -40,7 +42,7 @@ public class MainMenu : MonoBehaviour {
         optionText = optionText.GetComponent <Button>();
 
         scientist = scientist.GetComponent<Button>();
-        engenieer = engenieer.GetComponent<Button>();
+        engineer = engineer.GetComponent<Button>();
         farmer = farmer.GetComponent<Button>();
         tourist = tourist.GetComponent<Button>();
         astronaut = astronaut.GetComponent<Button>();
@@ -89,11 +91,57 @@ public class MainMenu : MonoBehaviour {
 
     public void CreatePerson()
     {
+        sciField = EventSystem.current.currentSelectedGameObject.name;
+        if (sciField.Equals("Scientist"))
+        {
+            sciencefieldList.Add("scientist");
+            foreach (string data in sciencefieldList)
+            {
+                Debug.Log(data);
+            }
+        }
+        else if (sciField.Equals("Engineer"))
+        {
+            sciencefieldList.Add("engineer");
+            foreach (string data in sciencefieldList)
+            {
+                Debug.Log(data);
+            }
+        }
+        else if (sciField.Equals("Farmer"))
+        {
+            sciencefieldList.Add("farmer");
+            foreach (string data in sciencefieldList)
+            {
+                Debug.Log(data);
+            }
+        }
+        else if (sciField.Equals("Tourist"))
+        {
+            sciencefieldList.Add("tourist");
+            foreach (string data in sciencefieldList)
+            {
+                Debug.Log(data);
+            }
+        }
+        else if (sciField.Equals("Astronaut"))
+        {
+            sciencefieldList.Add("astronaut");
+            foreach (string data in sciencefieldList)
+            {
+                Debug.Log(data);
+            }
+        }
+        else
+        {
+            Debug.Log("Damn");
+        }
 
-        inputField.enabled = true;
+
+    inputField.enabled = true;
         
         scientist.interactable = false;
-        engenieer.interactable = false;
+        engineer.interactable = false;
         farmer.interactable = false;
         tourist.interactable = false;
         astronaut.interactable = false;
@@ -106,7 +154,7 @@ public class MainMenu : MonoBehaviour {
         inputField.enabled = false;
 
         scientist.interactable = true;
-        engenieer.interactable = true;
+        engineer.interactable = true;
         farmer.interactable = true;
         tourist.interactable = true;
         astronaut.interactable = true;
@@ -120,28 +168,6 @@ public class MainMenu : MonoBehaviour {
         playerName = value;
         namesList.Add(playerName);
         foreach (string data in namesList)
-        {
-            Debug.Log(data);
-        }
-    }
-
-    public void SciFieldList()
-    {
-        
-        if (scientist)
-            sciencefieldList.Add("scientist");
-        else if (engenieer)
-            sciencefieldList.Add("engenieer");
-        else if (farmer)
-            sciencefieldList.Add("farmer");
-        else if (tourist)
-            sciencefieldList.Add("tourist");
-        else if (astronaut)
-            sciencefieldList.Add("astronaut");
-
-        Debug.Log(sciencefieldList.Count);
-
-        foreach (string data in sciencefieldList)
         {
             Debug.Log(data);
         }
