@@ -16,7 +16,7 @@ public class Building {
 		Connector
 	}
 
-	private BuildingType buildingType;
+	public BuildingType buildingType;
 
 	private double revenue;
 	private LinkedList<Person> occupants;

@@ -48,11 +48,11 @@ public class PersonBehavior : MonoBehaviour {
             GUI.skin.label.fontSize = 12;
             GUI.contentColor = Color.white;
             GUI.skin.label.fontStyle = FontStyle.Normal;
-            GUI.Box(new Rect(20, 225, 100, 75), "Settler: " + person.name);
+            GUI.Box(new Rect(20, 225, 100, 100), "Settler: " + person.name);
             GUI.Label(new Rect(25, 245, 100, 100), "Food: " + ((int)person.health.food));
             GUI.Label(new Rect(25, 260, 100, 100), "Water: " + ((int)person.health.water));
             GUI.Label(new Rect(25, 275, 100, 100), "Happiness: " + ((int)person.health.happiness));
-            GUI.Label(new Rect(25, 290, 100, 100), "Building: " + person.currentBuilding);
+            GUI.Label(new Rect(25, 290, 100, 100), "Building: " + person.currentBuilding.buildingType.ToString());
 
         }
     }
