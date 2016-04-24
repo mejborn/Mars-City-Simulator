@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Building {
-	const double productionRate = 0.01;
+	const double productionRate = 0.001;
 	public enum BuildingType 
 	{
 		Growhouse,
@@ -136,7 +136,7 @@ public class Building {
 		case BuildingType.Drill:
 			science += (50 * productionRate * skillset.engineering * DISCfactor);
 			water += (25 * productionRate * skillset.engineering * DISCfactor);
-			dirt += (100 * productionRate * (skillset.engineering + skillset.farming) * DISCfactor);
+			dirt += (200 * productionRate * (skillset.engineering + skillset.farming) * DISCfactor);
 			energy -= (150 * productionRate / (skillset.engineering * DISCfactor));
 			break;
 		default:
