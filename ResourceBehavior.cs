@@ -11,18 +11,22 @@ public class ResourceBehavior : MonoBehaviour {
     [SerializeField]
 	public double energy;// { get; private set; }
     [SerializeField]
-	public double waste;// { get; private set; }
+	public double wastePoop;// { get; private set; }
+    [SerializeField]
+    public double wastePee;// { get; private set; }
+    [SerializeField]
+    public double soil;// { get; private set; }
     [SerializeField]
 	public double science;// { get; private set; }
     [SerializeField]
 	public double money;// { get; private set; }
 
-    public enum Resources {food,water,energy,waste,science,money};
+    public enum Resources {food,water,energy,wastePoop,wastePee,soil,science,money};
 	public Resource resource { get; private set; }
 
 
 	void Awake(){
-		this.resource = new Resource (food, water, energy, waste, science, money);
+		this.resource = new Resource (food, water, energy, wastePoop, wastePee, soil, science, money);
 	}
 
 	// Use this for initialization
@@ -44,9 +48,11 @@ public class ResourceBehavior : MonoBehaviour {
         GUI.skin.label.fontStyle = FontStyle.Normal;
         GUI.Label(new Rect(25, 120, 100, 100), "Energy: " + ((int)resource.energy));
         GUI.Label(new Rect(25, 135, 100, 100), "Food: " + ((int)resource.food));
+        GUI.Label(new Rect(25, 150, 100, 100), "Soil: " + ((int)resource.soil));
         GUI.Label(new Rect(25, 150, 100, 100), "Money: " + ((int)resource.money));
         GUI.Label(new Rect(25, 165, 100, 100), "Science: " + ((int)resource.science));
-        GUI.Label(new Rect(25, 180, 100, 100), "Waste: " + ((int)resource.waste));
+        GUI.Label(new Rect(25, 180, 100, 100), "Waste (Poop): " + ((int)resource.wastePoop));
+        GUI.Label(new Rect(25, 180, 100, 100), "Waste (Pee): " + ((int)resource.wastePee}));
         GUI.Label(new Rect(25, 195, 100, 100), "Water: " + ((int)resource.water));
     }
 }
