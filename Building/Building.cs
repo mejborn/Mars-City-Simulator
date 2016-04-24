@@ -19,7 +19,6 @@ public class Building {
 
 	private double food = 0, water = 0, soil = 0, dirt = 0, money = 0, science = 0, energy = 0, wastePoop = 0, wastePee = 0;
 
-
 	LinkedList<double> revenue;
 	private LinkedList<Person> occupants;
 	private int maxOccupants = 4;
