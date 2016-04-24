@@ -3,15 +3,13 @@ using System.Collections;
 
 public class GlassBehavior : MonoBehaviour {
     SkyLight skylight;
+    [SerializeField]
     Color emissionColor;
     BuildingBehavior parentBuilding;
 	// Use this for initialization
     void Start()
     {
         parentBuilding = gameObject.transform.parent.GetComponent<BuildingBehavior>();
-
-        emissionColor = new Color(1.000f, 0.949f, 0.661f);
-
         skylight = FindObjectsOfType<Terrain>()[0].GetComponent<SkyLight>();
     }
 	
