@@ -59,8 +59,9 @@ public class CameraBehavior : MonoBehaviour {
         }
 
         Vector3 tempVec = transform.position;
-        if (tempVec.y > 100)
-            tempVec.y = 100;
+        tempVec.x = Mathf.Clamp(tempVec.x, -50, 50);
+        tempVec.z = Mathf.Clamp(tempVec.z, -50, 50);
+        tempVec.y = Mathf.Clamp(tempVec.y, 10, 50);
 
         this.transform.position = tempVec;
 
