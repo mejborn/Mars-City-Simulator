@@ -21,17 +21,23 @@ public class Person
 
 	private Resource resource;
 
-	public Person(string name, ScienceField.Scfield scfield, Resource resource){
+
+	public Person(Resource resource){
 		this.health = new Health ();
 		this.name = name;
-		this.scfield = new ScienceField(scfield);
+		this.scfield = new ScienceField(ScienceField.Scfield.Astronaut);
 		this.personality = new Personality ();
 		this.state = State.home;
 		this.resource = resource;
 		this.resource.addPerson (this);
 		this.resource.setupDropDownMenu ();
+	}
 
-    }
+	public void setVariables(ScienceField scf, string name){
+		this.scfield = scf;
+		this.name = name;
+	}
+
 
 	public void UpdateState ()
 	{
@@ -42,6 +48,7 @@ public class Person
 		case Person.State.sleeping:
 			break;
 		case Person.State.working:
+			consumeResources ();
 			performInterraction ();
 			break;
 		default:

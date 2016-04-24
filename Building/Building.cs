@@ -4,6 +4,17 @@ using System.Collections.Generic;
 
 public class Building {
 	const double productionRate = 0.01;
+	public enum BuildingType 
+	{
+		Growhouse,
+		WaterTreatment,
+		WasteTreatment,
+		EnergyGenerator,
+		ResearchCenter,
+		LoadingDock,
+		Habitation,
+		Connector
+	}
 
 	public BuildingType buildingType;
 
@@ -45,18 +56,6 @@ public class Building {
 	public void leave(Person person){
 		occupants.Remove (person);
 		currentOccupants--;
-	}
-
-	public enum BuildingType 
-	{
-		Growhouse,
-		WaterTreatment,
-		WasteTreatment,
-		EnergyGenerator,
-		ResearchCenter,
-		LoadingDock,
-		Habitation,
-		Connector
 	}
 
 	public BuildingType getBuildingType(){

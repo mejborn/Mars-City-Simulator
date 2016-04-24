@@ -11,11 +11,10 @@ public class PersonBehavior : MonoBehaviour {
 	public ScienceField.Scfield scienceField;
 	[SerializeField]
 	public string pname = "testguy1";
+	private Dropdown dp;
 
-    private Dropdown dp;
-
-    void Awake(){
-		this.person = new Person (pname,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
+	void Awake(){
+		this.person = new Person (GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
 	}
 
 	// Use this for initialization
