@@ -66,19 +66,37 @@ public class Resource {
 	{
 		foreach (Building building in buildings) {
 			switch (building.getBuildingType()) {
+			case Building.BuildingType.Habitation:
+				energy -= building.consume (Resources.energy);
+				break;
 			case Building.BuildingType.Growhouse:
-				//food += building.consume ();
+				food += building.consume (Resources.food);
+				water -= building.consume (Resources.water);
+				soil -= building.consume (Resources.soil);
+				energy -= building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.SolarPanel:
-				//energy += building.consume ();
+				energy += building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.ResearchCenter:
-				//science += building.consume ();
+				science += building.consume (Resources.science);
+				water -= building.consume (Resources.water);
+				energy -= building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.WaterTreatment:
-				//water += building.consume ();
+				food += building.consume (Resources.food);
+				water += building.consume (Resources.water);
+				soil += building.consume (Resources.soil);
+				wastePoop -= building.consume (Resources.wastePoop);
+				wastePee -= building.consume (Resources.wastePee);
+				dirt -= building.consume (Resources.dirt);
+				energy -= building.consume (Resources.energy);
 				break;
 			case Building.BuildingType.Drill:
+				water += building.consume (Resources.water);
+				science += building.consume (Resources.science);
+				dirt += building.consume (Resources.dirt);
+				energy -= building.consume (Resources.energy);
 				break;
 			default:
 				break;
@@ -115,6 +133,10 @@ public class Resource {
 			break;
 		default:
 			break;
+		}
+		if (Resource.Resources.science > 0) {
+			money += (science * 10000000);
+			science = 0;
 		}
 	}
 

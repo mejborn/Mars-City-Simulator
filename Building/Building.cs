@@ -17,7 +17,7 @@ public class Building {
 	}
 	public BuildingType buildingType;
 
-	private double food = 0, water = 0, soil = 0, dirt = 0, science = 0, energy = 0, wastePoop = 0, wastePee = 0;
+	private double food = 0, water = 0, soil = 0, dirt = 0, money = 0, science = 0, energy = 0, wastePoop = 0, wastePee = 0;
 
 	LinkedList<double> revenue;
 	private LinkedList<Person> occupants;
@@ -66,6 +66,10 @@ public class Building {
 			tmp = (int)wastePee;
 			wastePee = wastePee % 1;
 			return tmp;
+		case Resource.Resources.money:
+			tmp = (int)money;
+			money = money % 1;
+			return tmp;
 		default:
 			break;
 		}
@@ -102,6 +106,9 @@ public class Building {
 		Skillset skillset = person.getSkillset ();
 		double DISCfactor = calculateDICSFactor ();
 		switch (buildingType) {
+		case BuildingType.Habitation:
+			energy -= (150 * productionRate / (skillset.farming + skillset.engineering + skillset.science) * DISCfactor);
+			break;
 		case BuildingType.Growhouse:
 			food += (30 * productionRate * skillset.farming * DISCfactor);
 			water -= (200 * productionRate / (skillset.farming * DISCfactor));
@@ -120,15 +127,16 @@ public class Building {
 			food += (100 * productionRate * (skillset.science + skillset.engineering) * DISCfactor);//it's microbiology!
 			water += (200 * productionRate * (skillset.farming + skillset.science + skillset.engineering) * DISCfactor);
 			soil += (50 * productionRate * (skillset.farming + skillset.farming) * DISCfactor);
-			wastePoop -= (100 * productionRate / skillset.engineering * DISCfactor);
-			wastePee -= (100 * productionRate / skillset.engineering * DISCfactor);
+			wastePoop -= (100 * productionRate / (skillset.engineering + skillset.science) * DISCfactor);
+			wastePee -= (180 * productionRate * (skillset.engineering + skillset.science) * DISCfactor);
 			dirt -= (100 * productionRate / (skillset.engineering + skillset.farming) * DISCfactor);
+			energy -= (150 * productionRate / (skillset.engineering + skillset.science) * DISCfactor);
 			break;
 		case BuildingType.Drill:
 			science += (50 * productionRate * skillset.engineering * DISCfactor);
 			water += (25 * productionRate * skillset.engineering * DISCfactor);
 			dirt += (100 * productionRate * (skillset.engineering + skillset.farming) * DISCfactor);
-			energy -= (300 * productionRate / (skillset.engineering * DISCfactor));
+			energy -= (150 * productionRate / (skillset.engineering * DISCfactor));
 			break;
 		default:
 			break;
