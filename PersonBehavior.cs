@@ -40,7 +40,7 @@ public class PersonBehavior : MonoBehaviour {
 	{
 		return person.getSkillset ();
 	}
-
+/*
     void OnGUI()
     {
         if (dp.captionText.text == person.name)
@@ -55,5 +55,5 @@ public class PersonBehavior : MonoBehaviour {
             GUI.Label(new Rect(25, 290, 100, 100), "Building: " + person.currentBuilding.buildingType.ToString());
 
         }
-    }
+    }*/
 }

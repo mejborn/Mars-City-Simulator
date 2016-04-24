@@ -17,10 +17,9 @@ public class Person
 	public Building currentBuilding { get; private set; }
 
 	public Health health;
-	private ScienceField scfield;
+	public ScienceField scfield;
 
 	private Resource resource;
-
 
 	public Person(Resource resource){
 		this.health = new Health ();
