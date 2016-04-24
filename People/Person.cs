@@ -11,7 +11,7 @@ public class Person
 
 	public enum State {working, interracting, home, sleeping}
 
-	public string name = "test";
+	public string name { get; set; }
 	public Personality personality { get; private set; }
 	public State state { get; private set; }
 	public Building currentBuilding { get; private set; }
@@ -23,12 +23,13 @@ public class Person
 
 	public Person(string name,ScienceField.Scfield scfield,Resource resource){
 		this.health = new Health ();
-		//this.name = name;
+		this.name = name;
 		this.scfield = new ScienceField(scfield);
 		this.personality = new Personality ();
 		this.state = State.home;
 		this.resource = resource;
 		this.resource.addPerson (this);
+		this.resource.setupDropDownMenu ();
 	}
 
 	public void UpdateState ()

@@ -17,13 +17,10 @@ public class Resource {
 	public Resource(double food, double water, double energy, double waste, double science, double money){
 		this.buildings = new LinkedList<Building> ();
 		this.people = new LinkedList<Person> ();
-		var guy1 = new GameObject ();
-		guy1.AddComponent<PersonBehavior> ();
+	}
 
-		Person person = guy1.GetComponent<PersonBehavior> ().getPerson();
-		var p = person.name;
-		people.AddLast (person);
-		Dropdown dd = GameObject.FindGameObjectWithTag ("DropDownMenu").GetComponent<Dropdown> ();
+	public void setupDropDownMenu(){
+		Dropdown dd = GameObject.Find("Dropdown_People").GetComponent<Dropdown> ();
 		dd.gameObject.AddComponent<MenuBehavior> ();
 	}
 

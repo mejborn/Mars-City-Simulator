@@ -24,8 +24,6 @@ public class BuildingBehavior : MonoBehaviour {
     
     // Use this for initialization
     void Start () {
-		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ();
-		this.building = new Building (buildingType);
 		//resource.addBuilding (building);
 	}
 	
@@ -33,7 +31,7 @@ public class BuildingBehavior : MonoBehaviour {
 	void Update () {
 	
 	}
-
+		
 	public Building.BuildingType getType(){
 		return buildingType;
 	}
