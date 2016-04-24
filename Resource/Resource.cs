@@ -16,6 +16,14 @@ public class Resource {
 	private Dropdown dp, db;
 
 	public Resource(double food, double water, double energy, double waste, double science, double money){
+
+        this.food = food;
+        this.water = water;
+        this.energy = energy;
+        this.waste = waste;
+        this.science = science;
+        this.money = money;
+
 		this.buildings = new LinkedList<Building> ();
 		this.people = new LinkedList<Person> ();
 	}
@@ -87,8 +95,8 @@ public class Resource {
 			this.energy -= amount;
 			break;
 		case Resource.Resources.food:
-			this.food -= amount;
-			break;
+                this.food -= amount;
+                break;
 		case Resource.Resources.money:
 			this.money -= amount;
 			break;
@@ -105,5 +113,4 @@ public class Resource {
 			break;
 		}
 	}
-
 }
