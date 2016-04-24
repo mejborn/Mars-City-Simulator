@@ -65,6 +65,7 @@ public class MainMenu : MonoBehaviour {
     public void StartGame()
     {
        SceneManager.LoadScene("Mars");
+ 
     }
 
     public void OptionPress()
@@ -95,6 +96,7 @@ public class MainMenu : MonoBehaviour {
         if (sciField.Equals("Scientist"))
         {
             sciencefieldList.Add("scientist");
+            FindObjectOfType<GlobalData>().classes.Add("scientist");
             foreach (string data in sciencefieldList)
             {
                 Debug.Log(data);
@@ -103,6 +105,7 @@ public class MainMenu : MonoBehaviour {
         else if (sciField.Equals("Engineer"))
         {
             sciencefieldList.Add("engineer");
+            FindObjectOfType<GlobalData>().classes.Add("engineer");
             foreach (string data in sciencefieldList)
             {
                 Debug.Log(data);
@@ -111,6 +114,7 @@ public class MainMenu : MonoBehaviour {
         else if (sciField.Equals("Farmer"))
         {
             sciencefieldList.Add("farmer");
+            FindObjectOfType<GlobalData>().classes.Add("farmer");
             foreach (string data in sciencefieldList)
             {
                 Debug.Log(data);
@@ -119,6 +123,7 @@ public class MainMenu : MonoBehaviour {
         else if (sciField.Equals("Tourist"))
         {
             sciencefieldList.Add("tourist");
+            FindObjectOfType<GlobalData>().classes.Add("tourist");
             foreach (string data in sciencefieldList)
             {
                 Debug.Log(data);
@@ -127,6 +132,7 @@ public class MainMenu : MonoBehaviour {
         else if (sciField.Equals("Astronaut"))
         {
             sciencefieldList.Add("astronaut");
+            FindObjectOfType<GlobalData>().classes.Add("astronaut");
             foreach (string data in sciencefieldList)
             {
                 Debug.Log(data);
@@ -167,6 +173,9 @@ public class MainMenu : MonoBehaviour {
     {
         playerName = value;
         namesList.Add(playerName);
+
+        FindObjectOfType<GlobalData>().names.Add(value);
+
         foreach (string data in namesList)
         {
             Debug.Log(data);
