@@ -7,9 +7,9 @@ public class PersonBehavior : MonoBehaviour {
 	Building currentBuilding;
 
 	[SerializeField]
-	ScienceField.Scfield scienceField;
+	public ScienceField.Scfield scienceField;
 	[SerializeField]
-	string pname = "testguy1";
+	public string pname = "testguy1";
 
 	void Awake(){
 		this.person = new Person (pname,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
