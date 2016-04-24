@@ -86,7 +86,8 @@ public class Resource {
 				food += building.consume ();
 				water += building.consume ();
 				soil += building.consume ();
-				waste -= building.consume ();
+				wastePoop -= building.consume ();
+				wastePee -= building.consume ();
 				dirt -= building.consume ();
 				energy -= building.consume ();
 				break;
