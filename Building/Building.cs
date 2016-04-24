@@ -111,6 +111,7 @@ public class Building {
 			break;
 		case BuildingType.SolarPanel:
 			energy += 46 * productionRate;
+			break;
 		case BuildingType.ResearchCenter:
 			science += (10 * productionRate * (skillset.science + skillset.engineering) * DISCfactor);
 			water -= (100 * productionRate / skillset.science * DISCfactor);
@@ -120,7 +121,8 @@ public class Building {
 			food += (100 * productionRate * (skillset.science + skillset.engineering) * DISCfactor);//it's microbiology!
 			water += (200 * productionRate * (skillset.farming + skillset.science + skillset.engineering) * DISCfactor);
 			soil += (50 * productionRate * (skillset.farming + skillset.farming) * DISCfactor);
-			waste -= (100 * productionRate / skillset.engineering * DISCfactor);
+			wastePoop -= (100 * productionRate / skillset.engineering * DISCfactor);
+			wastePee -= (100 * productionRate / skillset.engineering * DISCfactor);
 			dirt -= (100 * productionRate / (skillset.engineering + skillset.farming) * DISCfactor);
 			break;
 		case BuildingType.Drill:

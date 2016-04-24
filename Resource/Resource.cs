@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Resource {
-	public enum Resources {food,water,energy,wastePoop,wastePee,soil,science,money};
+	public enum Resources {food,water,energy,wastePoop,wastePee,soil,science,dirt,money};
 	public LinkedList<Building> buildings { get; private set; }
 	public LinkedList<Person> people { get; private set; }
 	public double food { get; private set; }
@@ -16,10 +16,10 @@ public class Resource {
 	public double dirt {get; private set;}
 	public double science { get; private set; }
 	public double money {get; private set;}
+	public Dictionary<int,GameObject> gameObjects { get; set; }
 	private Dropdown dp, db;
 
 	public Resource(double food, double water, double energy, double wastePoop, double wastePee, double soil, double dirt, double science, double money){
-
         this.food = food;
         this.water = water;
         this.energy = energy;
@@ -29,6 +29,7 @@ public class Resource {
         this.dirt = dirt;
         this.science = science;
         this.money = money;
+		this.gameObjects = new Dictionary<int,GameObject> ();
 
 		this.buildings = new LinkedList<Building> ();
 		this.people = new LinkedList<Person> ();
