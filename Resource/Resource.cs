@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Resource {
-	public enum Resources {food,water,energy,wastePoop,wastePee,soil,science,money};
+	public enum Resources {food,water,energy,wastePoop,wastePee,soil,dirt,science,money};
 	public LinkedList<Building> buildings { get; private set; }
 	public LinkedList<Person> people { get; private set; }
 	public double food { get; private set; }
@@ -65,19 +65,36 @@ public class Resource {
 	{
 		foreach (Building building in buildings) {
 			switch (building.getBuildingType()) {
+			case Building.BuildingType.Habitation:
+				energy -= building.consume ();
+				break;
 			case Building.BuildingType.Growhouse:
 				food += building.consume ();
+				water -= building.consume ();
+				soil -= building.consume ();
+				energy -= building.consume ();
 				break;
 			case Building.BuildingType.SolarPanel:
 				energy += building.consume ();
 				break;
 			case Building.BuildingType.ResearchCenter:
 				science += building.consume ();
+				water -= building.consume ();
+				energy -= building.consume ();
 				break;
 			case Building.BuildingType.WaterTreatment:
+				food += building.consume ();
 				water += building.consume ();
+				soil += building.consume ();
+				waste -= building.consume ();
+				dirt -= building.consume ();
+				energy -= building.consume ();
 				break;
 			case Building.BuildingType.Drill:
+				water += building.consume ();
+				science += building.consume ();
+				dirt += building.consume ();
+				energy -= building.consume ();
 				break;
 			default:
 				break;
@@ -114,6 +131,11 @@ public class Resource {
 			break;
 		default:
 			break;
+		}
+		if (Resource.Resources.science > 0) {
+			money += (Resource.Resources.science * 10000000);
+			Resource.Resources.science = 0;
+			science = Resource.Resources.science;
 		}
 	}
 
