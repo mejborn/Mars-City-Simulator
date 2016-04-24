@@ -7,11 +7,26 @@ ModelImporter:
   fileIDToRecycleName:
     100000: default
     100002: //RootNode
+    100004: OpenRocket
+    100006: Paint
+    100008: Paint.001
     400000: default
     400002: //RootNode
+    400004: OpenRocket
+    400006: Paint
+    400008: Paint.001
     2300000: default
+    2300002: OpenRocket
+    2300004: Paint
+    2300006: Paint.001
     3300000: default
+    3300002: OpenRocket
+    3300004: Paint
+    3300006: Paint.001
     4300000: default
+    4300002: OpenRocket
+    4300004: Paint
+    4300006: Paint.001
   materials:
     importMaterials: 1
     materialName: 0

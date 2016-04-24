@@ -46,7 +46,7 @@ public class Health
 
 	void calculateHappiness ()
 	{
-		throw new System.NotImplementedException ();
+		//throw new System.NotImplementedException ();
 	}
 
 }

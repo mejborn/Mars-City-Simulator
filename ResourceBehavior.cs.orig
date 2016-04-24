@@ -1,0 +1,57 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+
+public class ResourceBehavior : MonoBehaviour {
+    [SerializeField]
+    public double food;//{ get; private set; } 
+	[SerializeField]
+	public double water;// { get; private set; }
+    [SerializeField]
+	public double energy;// { get; private set; }
+    [SerializeField]
+	public double waste;// { get; private set; }
+    [SerializeField]
+	public double science;// { get; private set; }
+    [SerializeField]
+	public double money;// { get; private set; }
+
+<<<<<<< Updated upstream
+	public Resource resource { get; private set; }
+
+
+	void Awake(){
+		this.resource = new Resource (food, water, energy, waste, science, money);
+	}
+=======
+    public enum Resource {food,water,energy,waste,science,money};
+	public LinkedList<Building> buildings { get; private set; }
+	public LinkedList<Person> people { get; private set; }
+>>>>>>> Stashed changes
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		resource.updateResources ();
+	}
+	public Resource getResource(){
+		return this.resource;
+	}
+
+    void OnGUI()
+    {
+        GUI.skin.label.fontSize = 12;
+        GUI.contentColor = Color.black;
+        GUI.Label(new Rect(15, 15, 100, 100), ("Food: " + food));
+        GUI.Label(new Rect(15, 30, 100, 100), ("Water: " + water));
+        GUI.Label(new Rect(15, 45, 100, 100), ("Energy: " + energy));
+        GUI.Label(new Rect(15, 60, 100, 100), ("Waste: " + waste));
+        GUI.Label(new Rect(15, 75, 100, 100), ("Science: " + science));
+        GUI.Label(new Rect(15, 90, 100, 100), ("Money: " + money));
+    }
+}

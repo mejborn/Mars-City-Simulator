@@ -8,18 +8,23 @@ ModelImporter:
     100000: //RootNode
     100002: OpenRocket
     100004: Paint
+    100006: Paint_001
     400000: //RootNode
     400002: OpenRocket
     400004: Paint
+    400006: Paint_001
     2300000: //RootNode
     2300002: OpenRocket
     2300004: Paint
+    2300006: Paint_001
     3300000: //RootNode
     3300002: OpenRocket
     3300004: Paint
+    3300006: Paint_001
     4300000: Cylinder
     4300002: OpenRocket
     4300004: Paint
+    4300006: Paint_001
     7400000: Default Take
     9500000: //RootNode
   materials:

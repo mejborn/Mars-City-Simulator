@@ -9,28 +9,24 @@ public class PersonBehavior : MonoBehaviour {
 	[SerializeField]
 	ScienceField.Scfield scienceField;
 	[SerializeField]
-	string name;
-	
+	string pname = "testguy1";
+
+	void Awake(){
+		this.person = new Person (pname,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
+	}
+
 	// Use this for initialization
 	void Start () {
-		this.person = new Person (name,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>());
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		switch (person.state) {
-		case Person.State.home:
-			person.consumeResources ();
-			break;
-		case Person.State.sleeping:
-			break;
-		case Person.State.working:
-			person.performInterraction ();
-			break;
-		default:
-			break;
-		}
-		person.updateHealth ();
+		person.UpdateState ();
+	}
+
+	public Person getPerson(){
+		return this.person;
 	}
 
 	Personality getPersonality()

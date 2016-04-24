@@ -6,27 +6,37 @@ public class BuildingBehavior : MonoBehaviour {
 	Building building;
 
 	[SerializeField]
-	public Building.BuildingType buildingType;
-	ResourceBehavior resource;
+	Building.BuildingType buildingType;
+	Resource resource;
+
 	[SerializeField]
     public int extendsX = 2;
     [SerializeField]
     public int extendsZ = 2;
-    [SerializeField]
-    public List<Vector2> entrances;
+
+	[SerializeField]
+	public List<Vector2> entrances;
+
+    public bool isActive;
+    
+	void Awake(){
+		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
+		this.building = new Building (buildingType);
+		resource.addBuilding (building);
+	}
     
     // Use this for initialization
     void Start () {
-		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ();
-		this.building = new Building (buildingType);
+        if (buildingType == Building.BuildingType.Habitation)
+            isActive = true;
 		//resource.addBuilding (building);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		resource.updateMenus ();
 	}
-
+		
 	public Building.BuildingType getType(){
 		return buildingType;
 	}
