@@ -12,7 +12,7 @@ public class PersonBehavior : MonoBehaviour {
 	string pname = "testguy1";
 
 	void Awake(){
-		this.person = new Person (pname,scienceField,GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
+		this.person = new Person (GameObject.FindGameObjectWithTag("ResourceManager").GetComponent<ResourceBehavior>().resource);	
 	}
 
 	// Use this for initialization
