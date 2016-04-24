@@ -52,7 +52,7 @@ public class ResourceBehavior : MonoBehaviour {
         GUI.Label(new Rect(25, 150, 100, 100), "Money: " + ((int)resource.money));
         GUI.Label(new Rect(25, 165, 100, 100), "Science: " + ((int)resource.science));
         GUI.Label(new Rect(25, 180, 100, 100), "Waste (Poop): " + ((int)resource.wastePoop));
-        GUI.Label(new Rect(25, 180, 100, 100), "Waste (Pee): " + ((int)resource.wastePee}));
+        GUI.Label(new Rect(25, 180, 100, 100), "Waste (Pee): " + ((int)resource.wastePee));
         GUI.Label(new Rect(25, 195, 100, 100), "Water: " + ((int)resource.water));
     }
 }
