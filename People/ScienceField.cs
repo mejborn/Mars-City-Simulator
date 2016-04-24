@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ScienceField
 {
-	private Scfield scfield;
+	public Scfield scfield;
 	private Skillset skillset;
 
 	public Skillset getSkillset(){
