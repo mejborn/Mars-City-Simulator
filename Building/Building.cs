@@ -17,7 +17,7 @@ public class Building {
 	}
 	public BuildingType buildingType;
 
-	private double food = 0, water = 0, soil = 0, science = 0, energy = 0, waste = 0;
+	private double food = 0, water = 0, soil = 0, dirt = 0, science = 0, energy = 0, wastePoop = 0, wastePee = 0;
 
 
 	LinkedList<double> revenue;
@@ -47,6 +47,10 @@ public class Building {
 			tmp = (int)soil;
 			soil = soil % 1;
 			return tmp;
+		case Resource.Resources.dirt:
+			tmp = (int)dirt;
+			dirt = dirt % 1;
+			return tmp;
 		case Resource.Resources.science:
 			tmp = (int)science;
 			science = science % 1;
@@ -54,6 +58,14 @@ public class Building {
 		case Resource.Resources.energy:
 			tmp = (int)energy;
 			energy = energy % 1;
+			return tmp;
+		case Resource.Resources.wastePoop:
+			tmp = (int)wastePoop;
+			wastePoop = wastePoop % 1;
+			return tmp;
+		case Resource.Resources.wastePee:
+			tmp = (int)wastePee;
+			wastePee = wastePee % 1;
 			return tmp;
 		default:
 			break;
@@ -92,28 +104,30 @@ public class Building {
 		double DISCfactor = calculateDICSFactor ();
 		switch (buildingType) {
 		case BuildingType.Growhouse:
-			food += (productionRate * skillset.farming * DISCfactor);
-			water -= (productionRate / (skillset.farming * DISCfactor));
-			soil -= (productionRate / (skillset.farming * DISCfactor));
-			energy -= (productionRate / (skillset.engineering * DISCfactor));
+			food += (30 * productionRate * skillset.farming * DISCfactor);
+			water -= (200 * productionRate / (skillset.farming * DISCfactor));
+			soil -= (0.01 * productionRate / (skillset.farming * DISCfactor));
+			energy -= (10 * productionRate / (skillset.engineering * DISCfactor));
 			break;
 		case BuildingType.SolarPanel:
-			energy += productionRate;
+			energy += 46 * productionRate;
 		case BuildingType.ResearchCenter:
-			science += (productionRate * skillset.science * DISCfactor);
-			water -= (productionRate / skillset.science * DISCfactor);
-			energy -= (productionRate / skillset.science * DISCfactor);
+			science += (10 * productionRate * (skillset.science + skillset.engineering) * DISCfactor);
+			water -= (100 * productionRate / skillset.science * DISCfactor);
+			energy -= (100 * productionRate / skillset.science * DISCfactor);
 			break;
 		case BuildingType.WaterTreatment:
-			food += (productionRate * skillset.farming * DISCfactor);
-			water += (productionRate * skillset.farming * DISCfactor);
-			soil += (productionRate * skillset.farming * DISCfactor);
-			waste -= (productionRate / skillset.engineering * DISCfactor);
+			food += (100 * productionRate * (skillset.science + skillset.engineering) * DISCfactor);//it's microbiology!
+			water += (200 * productionRate * (skillset.farming + skillset.science + skillset.engineering) * DISCfactor);
+			soil += (50 * productionRate * (skillset.farming + skillset.farming) * DISCfactor);
+			waste -= (100 * productionRate / skillset.engineering * DISCfactor);
+			dirt -= (100 * productionRate / (skillset.engineering + skillset.farming) * DISCfactor);
 			break;
 		case BuildingType.Drill:
-			science += (productionRate * skillset.engineering * DISCfactor);
-			water += (productionRate * skillset.engineering * DISCfactor);
-			energy -= (productionRate * skillset.engineering * DISCfactor);
+			science += (50 * productionRate * skillset.engineering * DISCfactor);
+			water += (25 * productionRate * skillset.engineering * DISCfactor);
+			dirt += (100 * productionRate * (skillset.engineering + skillset.farming) * DISCfactor);
+			energy -= (300 * productionRate / (skillset.engineering * DISCfactor));
 			break;
 		default:
 			break;

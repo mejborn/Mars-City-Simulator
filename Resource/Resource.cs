@@ -13,11 +13,12 @@ public class Resource {
 	public double wastePoop {get; private set;}
 	public double wastePee {get; private set;}
 	public double soil {get; private set;}
+	public double dirt {get; private set;}
 	public double science { get; private set; }
 	public double money {get; private set;}
 	private Dropdown dp, db;
 
-	public Resource(double food, double water, double energy, double wastePoop, double wastePee, double soil, double science, double money){
+	public Resource(double food, double water, double energy, double wastePoop, double wastePee, double soil, double dirt, double science, double money){
 
         this.food = food;
         this.water = water;
@@ -25,6 +26,7 @@ public class Resource {
         this.wastePoop = wastePoop;
         this.wastePee = wastePee;
         this.soil = soil;
+        this.dirt = dirt;
         this.science = science;
         this.money = money;
 
