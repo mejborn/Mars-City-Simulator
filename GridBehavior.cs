@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GridBehavior : MonoBehaviour {
-    public static int nx = 100, nz = 100;
+    public static int nx = 500, nz = 500;
     int[,] collisionGrid = new int[nx,nz];
 
     public enum GridElement
@@ -45,7 +45,7 @@ public class GridBehavior : MonoBehaviour {
                 else
                     Gizmos.color = Color.green;
 
-                Gizmos.DrawCube(new Vector3(x - nx / 2 + 0.5f, 0, z - nx / 2 + 0.5f), Vector3.one * 0.5f);
+                //Gizmos.DrawCube(new Vector3(x - nx / 2 + 0.5f, 3, z - nx / 2 + 0.5f), Vector3.one * 0.5f);
             }
         }
 
