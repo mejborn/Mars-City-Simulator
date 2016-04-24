@@ -21,6 +21,7 @@ public class Person
 
 	private Resource resource;
 
+
 	public Person(Resource resource){
 		this.health = new Health ();
 		this.name = name;
