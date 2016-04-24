@@ -40,13 +40,13 @@ public class ResourceBehavior : MonoBehaviour {
         GUI.skin.label.fontSize = 12;
         GUI.contentColor = Color.white;
         GUI.skin.label.fontStyle = FontStyle.Bold;
-        GUI.Label(new Rect(25, 100, 1000, 100), "General Resources");
+        GUI.Box(new Rect(20, 100, 100, 115), "Resources");
         GUI.skin.label.fontStyle = FontStyle.Normal;
-        GUI.Label(new Rect(25, 115, 100, 100), "Energy: " + ((int)resource.energy));
-        GUI.Label(new Rect(25, 130, 100, 100), "Food: " + ((int)resource.food));
-        GUI.Label(new Rect(25, 145, 100, 100), "Money: " + ((int)resource.money));
-        GUI.Label(new Rect(25, 160, 100, 100), "Science: " + ((int)resource.science));
-        GUI.Label(new Rect(25, 175, 100, 100), "Waste: " + ((int)resource.waste));
-        GUI.Label(new Rect(25, 190, 100, 100), "Water: " + ((int)resource.water));
+        GUI.Label(new Rect(25, 120, 100, 100), "Energy: " + ((int)resource.energy));
+        GUI.Label(new Rect(25, 135, 100, 100), "Food: " + ((int)resource.food));
+        GUI.Label(new Rect(25, 150, 100, 100), "Money: " + ((int)resource.money));
+        GUI.Label(new Rect(25, 165, 100, 100), "Science: " + ((int)resource.science));
+        GUI.Label(new Rect(25, 180, 100, 100), "Waste: " + ((int)resource.waste));
+        GUI.Label(new Rect(25, 195, 100, 100), "Water: " + ((int)resource.water));
     }
 }

@@ -47,13 +47,14 @@ public class PersonBehavior : MonoBehaviour {
         if (dp.captionText.text == person.name)
         {
             GUI.skin.label.fontSize = 12;
-            GUI.skin.label.fontStyle = FontStyle.Bold;
             GUI.contentColor = Color.white;
-            GUI.Label(new Rect(25, 225, 100, 100), "Settler: " + person.name);
             GUI.skin.label.fontStyle = FontStyle.Normal;
-            GUI.Label(new Rect(25, 240, 100, 100), "Food: " + ((int)person.health.food));
-            GUI.Label(new Rect(25, 255, 100, 100), "Water: " + ((int)person.health.water));
-            GUI.Label(new Rect(25, 270, 100, 100), "Happiness: " + ((int)person.health.happiness));
+            GUI.Box(new Rect(20, 225, 100, 75), "Settler: " + person.name);
+            GUI.Label(new Rect(25, 245, 100, 100), "Food: " + ((int)person.health.food));
+            GUI.Label(new Rect(25, 260, 100, 100), "Water: " + ((int)person.health.water));
+            GUI.Label(new Rect(25, 275, 100, 100), "Happiness: " + ((int)person.health.happiness));
+            GUI.Label(new Rect(25, 290, 100, 100), "Building: " + person.currentBuilding);
+
         }
     }
 }

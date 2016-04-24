@@ -21,7 +21,7 @@ public class Person
 
 	private Resource resource;
 
-	public Person(string name,ScienceField.Scfield scfield,Resource resource){
+	public Person(string name, ScienceField.Scfield scfield, Resource resource){
 		this.health = new Health ();
 		this.name = name;
 		this.scfield = new ScienceField(scfield);

@@ -16,7 +16,9 @@ public class Building {
 	public Building(BuildingType bt){
 		this.revenue = 0;
 		this.buildingType = bt;
-	}
+
+        occupants = new LinkedList<Person>();
+    }
 
 	public int consume ()
 	{
@@ -30,9 +32,12 @@ public class Building {
 
 	public bool enter (Person person)
 	{
+        Debug.Log(person.name);
 		if (currentOccupants < maxOccupants) {
 			occupants.AddLast (person);
-			return true;
+            currentOccupants++;
+
+            return true;
 		}
 		return false;
 	}
