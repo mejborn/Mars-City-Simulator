@@ -13,6 +13,7 @@ public class Resource {
 	public double waste {get; private set;}
 	public double science { get; private set; }
 	public double money {get; private set;}
+	private Dropdown dp, db;
 
 	public Resource(double food, double water, double energy, double waste, double science, double money){
 		this.buildings = new LinkedList<Building> ();
@@ -20,8 +21,30 @@ public class Resource {
 	}
 
 	public void setupDropDownMenu(){
-		Dropdown dd = GameObject.Find("Dropdown_People").GetComponent<Dropdown> ();
-		dd.gameObject.AddComponent<MenuBehavior> ();
+		dp = GameObject.Find("Dropdown_People").GetComponent<Dropdown> ();
+		db = GameObject.Find ("Dropdown_Buildings").GetComponent<Dropdown> ();
+		dp.gameObject.AddComponent<MenuBehavior> ();
+		dp.itemText.text = "People";
+		dp.captionText.text = "People";
+		db.gameObject.AddComponent<MenuBehavior> ();
+		dp.options.Clear ();
+		db.options.Clear ();
+		db.captionText.text = "Buildings";
+		db.itemText.text = "Buildings";
+	}
+
+	public void updateMenus ()
+	{
+		dp.options.Clear ();
+		db.options.Clear ();
+		foreach (Person person in this.people){
+			dp.options.Add (new Dropdown.OptionData() {text = person.name} );
+		}
+		foreach (Building building in this.buildings) {
+			if (!(Building.BuildingType.Connector.Equals(building.getBuildingType()))) {
+				db.options.Add (new Dropdown.OptionData () { text = building.getBuildingType ().ToString () });
+			}
+		}
 	}
 
 	public void updateResources ()
@@ -50,6 +73,7 @@ public class Resource {
 
 	public void addBuilding(Building building){
 		buildings.AddLast (building);
+		updateMenus ();
 	}
 
 	public void addPerson (Person person)

@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class Building {
 	const double productionRate = 0.01;
 
+	private BuildingType buildingType;
+
 	private double revenue;
 	private LinkedList<Person> occupants;
 	private int maxOccupants = 4;
 	private int currentOccupants = 0;
+
 
 	public Building(BuildingType bt){
 		this.revenue = 0;
@@ -50,7 +53,6 @@ public class Building {
 		Habitation,
 		Connector
 	}
-	private BuildingType buildingType;
 
 	public BuildingType getBuildingType(){
 		return buildingType;

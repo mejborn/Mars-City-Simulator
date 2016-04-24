@@ -22,6 +22,7 @@ public class BuildingBehavior : MonoBehaviour {
 	void Awake(){
 		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
 		this.building = new Building (buildingType);
+		resource.addBuilding (building);
 	}
     
     // Use this for initialization
@@ -33,7 +34,7 @@ public class BuildingBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		resource.updateMenus ();
 	}
 		
 	public Building.BuildingType getType(){

@@ -27,7 +27,7 @@ public class ResourceBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		resource.setupDropDownMenu ();
 	}
 	
 	// Update is called once per frame
