@@ -31,7 +31,7 @@ public class Building{
 		this.buildingType = bt;
         occupants = new LinkedList<Person>();
 
-        if (bt.Equals(BuildingType.Habitation))
+        if (bt.Equals(BuildingType.Habitation) || bt.Equals(BuildingType.Drill) || bt.Equals(BuildingType.SolarPanel))
             isActive = true;
     }
 
