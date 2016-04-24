@@ -47,6 +47,7 @@ public class Person
 		case Person.State.sleeping:
 			break;
 		case Person.State.working:
+			consumeResources ();
 			performInterraction ();
 			break;
 		default:

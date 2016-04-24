@@ -25,6 +25,14 @@ public class PeopleSpawnerBehavior : MonoBehaviour
         person.AddComponent<PersonBehavior>();
         person.GetComponent<PersonBehavior>().getPerson().name = "Mac";
         person.GetComponent<PersonBehavior>().scienceField = ScienceField.Scfield.Farmer;
+		person.tag = "mac";
+
+		person = new GameObject();
+		person.AddComponent<PersonBehavior>();
+		person.GetComponent<PersonBehavior>().getPerson().name = "Cheese";
+		person.GetComponent<PersonBehavior>().scienceField = ScienceField.Scfield.Farmer;
+		person.tag = "cheese";
+
 
         person = new GameObject();
         person.AddComponent<PersonBehavior>();
