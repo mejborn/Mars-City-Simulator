@@ -6,8 +6,10 @@ using System.Linq;
 
 public class Person
 {
-	private const double waterConsumationModifier = 0.5;
-	private const double foodConsumationModifier = 0.5;
+	private const double waterConsumptionModifier = 2;
+	private const double foodConsumptionModifier = 1;
+	private const double poopGeneratorModifier = 0.5;
+	private const double peeGeneratorModifier = 1;
 
 	public enum State {working, interracting, home, sleeping}
 
@@ -43,11 +45,13 @@ public class Person
 		switch (state) {
 		case Person.State.home:
 			consumeResources ();
+			generateWaste ();
 			break;
 		case Person.State.sleeping:
 			break;
 		case Person.State.working:
 			consumeResources ();
+			generateWaste ();
 			performInterraction ();
 			break;
 		default:
@@ -79,12 +83,18 @@ public class Person
 
 	public void consumeResources ()
 	{
-		if (resource.food > foodConsumationModifier && health.addFood()) {
-			resource.consumeResource (Resource.Resources.food, foodConsumationModifier);
+		if (resource.food > foodConsumptionModifier && health.addFood()) {
+			resource.consumeResource (Resource.Resources.food, foodConsumptionModifier);
 		}
-		if (resource.water > waterConsumationModifier && health.addWater()) {
-			resource.consumeResource (Resource.Resources.water, waterConsumationModifier);
+		if (resource.water > waterConsumptionModifier && health.addWater()) {
+			resource.consumeResource (Resource.Resources.water, waterConsumptionModifier);
 		}
+	}
+
+	public void generateWaste ()
+	{
+		resource.generateWaste (Resource.Resources.wastePoop, poopGeneratorModifier);
+		resource.generateWaste (Resource.Resources.wastePee, peeGeneratorModifier);
 	}
 
 	public void updateHealth ()

@@ -7,36 +7,56 @@ public class Building {
 	public enum BuildingType 
 	{
 		Growhouse,
-		WaterTreatment,
-		WasteTreatment,
-		EnergyGenerator,
-		ResearchCenter,
-		LoadingDock,
+		Connector,
 		Habitation,
-		Connector
+		SolarPanel,
+		LandingPad,
+		ResearchCenter,
+		WaterTreatment,
+		Drill
 	}
-
 	public BuildingType buildingType;
 
-	private double revenue;
+	private double food = 0, water = 0, soil = 0, science = 0, energy = 0, waste = 0;
+
+
+	LinkedList<double> revenue;
 	private LinkedList<Person> occupants;
 	private int maxOccupants = 4;
 	private int currentOccupants = 0;
 
 
 	public Building(BuildingType bt){
-		this.revenue = 0;
 		this.buildingType = bt;
-
         occupants = new LinkedList<Person>();
     }
 
-	public int consume ()
+	public int consume (Resource.Resources res)
 	{
 		int tmp = 0;
-		if (revenue > 1) {
-			tmp = (int)revenue;
-			revenue = revenue % 1;
+		switch (res) {
+		case Resource.Resources.food:
+			tmp = (int)food;
+			food = food % 1;
+			return tmp;
+		case Resource.Resources.water:
+			tmp = (int)water;
+			water = water % 1;
+			return tmp;
+		case Resource.Resources.soil:
+			tmp = (int)soil;
+			soil = soil % 1;
+			return tmp;
+		case Resource.Resources.science:
+			tmp = (int)science;
+			science = science % 1;
+			return tmp;
+		case Resource.Resources.energy:
+			tmp = (int)energy;
+			energy = energy % 1;
+			return tmp;
+		default:
+			break;
 		}
 		return tmp;
 	}
@@ -72,7 +92,28 @@ public class Building {
 		double DISCfactor = calculateDICSFactor ();
 		switch (buildingType) {
 		case BuildingType.Growhouse:
-			revenue += (productionRate * skillset.farming * DISCfactor);
+			food += (productionRate * skillset.farming * DISCfactor);
+			water -= (productionRate / (skillset.farming * DISCfactor));
+			soil -= (productionRate / (skillset.farming * DISCfactor));
+			energy -= (productionRate / (skillset.engineering * DISCfactor));
+			break;
+		case BuildingType.SolarPanel:
+			energy += productionRate;
+		case BuildingType.ResearchCenter:
+			science += (productionRate * skillset.science * DISCfactor);
+			water -= (productionRate / skillset.science * DISCfactor);
+			energy -= (productionRate / skillset.science * DISCfactor);
+			break;
+		case BuildingType.WaterTreatment:
+			food += (productionRate * skillset.farming * DISCfactor);
+			water += (productionRate * skillset.farming * DISCfactor);
+			soil += (productionRate * skillset.farming * DISCfactor);
+			waste -= (productionRate / skillset.engineering * DISCfactor);
+			break;
+		case BuildingType.Drill:
+			science += (productionRate * skillset.engineering * DISCfactor);
+			water += (productionRate * skillset.engineering * DISCfactor);
+			energy -= (productionRate * skillset.engineering * DISCfactor);
 			break;
 		default:
 			break;
@@ -98,7 +139,7 @@ public class Building {
 		} else {
 			bonus -= 0.3;
 		}
-		throw new System.NotImplementedException ();
+		return 1;
 	}
 
 }
