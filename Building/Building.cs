@@ -105,6 +105,24 @@ public class Building{
 		return this.occupants;
 	}
 
+    public void Update()
+    {
+        switch (buildingType)
+        {
+            case BuildingType.SolarPanel:
+                energy += 46 * productionRate;
+                break;
+            case BuildingType.Drill:
+                science += 50 * productionRate;
+                water += 25 * productionRate;
+                dirt += 200 * productionRate;
+                energy -= 150 * productionRate;
+                break;
+            default:
+                break;
+        }
+    }
+
 	public void performWork (Person person)
 	{
 		Skillset skillset = person.getSkillset ();
@@ -119,9 +137,6 @@ public class Building{
 			soil -= (0.01 * productionRate / (skillset.farming * DISCfactor));
 			energy -= (10 * productionRate / (skillset.engineering * DISCfactor));
 			break;
-		case BuildingType.SolarPanel:
-			energy += 46 * productionRate;
-			break;
 		case BuildingType.ResearchCenter:
 			science += (10 * productionRate * (skillset.science + skillset.engineering) * DISCfactor);
 			water -= (100 * productionRate / skillset.science * DISCfactor);
@@ -135,12 +150,6 @@ public class Building{
 			wastePee -= (180 * productionRate * (skillset.engineering + skillset.science) * DISCfactor);
 			dirt -= (100 * productionRate / (skillset.engineering + skillset.farming) * DISCfactor);
 			energy -= (150 * productionRate / (skillset.engineering + skillset.science) * DISCfactor);
-			break;
-		case BuildingType.Drill:
-			science += (50 * productionRate * skillset.engineering * DISCfactor);
-			water += (25 * productionRate * skillset.engineering * DISCfactor);
-			dirt += (200 * productionRate * (skillset.engineering + skillset.farming) * DISCfactor);
-			energy -= (150 * productionRate / (skillset.engineering * DISCfactor));
 			break;
 		default:
 			break;

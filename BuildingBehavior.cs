@@ -33,6 +33,7 @@ public class BuildingBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		resource.updateMenus ();
+        building.Update();
 	}
 		
 	public Building.BuildingType getType(){
