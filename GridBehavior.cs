@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GridBehavior : MonoBehaviour {
-    public static int nx = 1000, nz = 1000;
+    public static int nx = 100, nz = 100;
     int[,] collisionGrid = new int[nx,nz];
 
     public enum GridElement
@@ -32,7 +32,7 @@ public class GridBehavior : MonoBehaviour {
         collisionGrid[ix, iz] = val;
     }
 
-    /*void OnDrawGizmos()
+    void OnDrawGizmos()
     {
         for (int x = 0; x < nx; x++)
         {
@@ -49,6 +49,6 @@ public class GridBehavior : MonoBehaviour {
             }
         }
 
-    }*/
+    }
 }
 

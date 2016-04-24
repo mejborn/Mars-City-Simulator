@@ -8,15 +8,20 @@ ModelImporter:
     100000: Framework
     100002: Glass
     100004: //RootNode
+    100006: Grass
     400000: Framework
     400002: Glass
     400004: //RootNode
+    400006: Grass
     2300000: Framework
     2300002: Glass
+    2300004: Grass
     3300000: Framework
     3300002: Glass
+    3300004: Grass
     4300000: Framework
     4300002: Glass
+    4300004: Grass
     7400000: Default Take
     9500000: //RootNode
   materials:

@@ -78,8 +78,7 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                             float steepness = terrain.terrainData.GetSteepness(ix, iz);
                             int gridType = grid.CheckCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2);
 
-                            if ((bType == Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Connector) || (bType != Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Free) || steepness > 20f)
-                            //if ((bType != Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Free) || steepness > 20f)
+                            if ((bType != Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Free) || steepness > 20f || (bType == Building.BuildingType.Connector && gridType != (int)GridBehavior.GridElement.Connector))
                             {
                                 isPlacable = false;
                                 break;
@@ -92,12 +91,13 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                         GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", Color.green);
                         if (currentMouseState && !lastMouseState)
                         {
-                            Instantiate(buildings[building], worldPosition, Quaternion.identity);
+                            Object tmp = Instantiate(buildings[building], worldPosition, Quaternion.identity);
                             for (int x = 0; x < extendsX; x++)
                             {
                                 for (int z = 0; z < extendsZ; z++)
                                 {
-                                    grid.SetCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2, (int)GridBehavior.GridElement.Building);
+                                    grid.SetCollision(worldPosition.x + x - extendsX / 2, worldPosition.z + z - extendsZ / 2, tmp.GetInstanceID());
+
 
                                     int ix = (int)((Mathf.Round(worldPosition.x + x + 0.5f - extendsX / 2)) * terrain.terrainData.heightmapWidth / terrain.terrainData.size.x) + terrain.terrainData.heightmapWidth / 2;
                                     int iz = (int)((Mathf.Round(worldPosition.z + z + 0.5f - extendsZ / 2)) * terrain.terrainData.heightmapHeight / terrain.terrainData.size.z) + terrain.terrainData.heightmapHeight / 2;
@@ -110,7 +110,7 @@ public class BuildingPlacerBehavior : MonoBehaviour {
                                 if (grid.CheckCollision(worldPosition.x + en.x, worldPosition.z + en.y) == (int)GridBehavior.GridElement.Free)
                                     grid.SetCollision(worldPosition.x + en.x, worldPosition.z + en.y, (int)GridBehavior.GridElement.Connector);
                             }
-                            //terrain.terrainData.SetHeights(0, 0, heights);
+                           // terrain.terrainData.SetHeights(0, 0, heights);
 
                             //Destroy(gameObject);
                         }
