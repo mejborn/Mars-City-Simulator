@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class ConnectorBehavior : MonoBehaviour {
     [SerializeField]
     List<Mesh> meshes;
+	Resource resource;
 
     GridBehavior grid;
     MeshFilter filter;
@@ -12,6 +13,7 @@ public class ConnectorBehavior : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<Resource> ();
         grid = GameObject.FindGameObjectsWithTag("Grid")[0].GetComponent<GridBehavior>();
         filter = gameObject.GetComponent<MeshFilter>();
 
@@ -32,15 +34,7 @@ public class ConnectorBehavior : MonoBehaviour {
 
     GameObject GetObjectByID(int id)
     {
-        foreach (GameObject go in FindObjectsOfType<GameObject>())
-        {
-            if (go.GetInstanceID() == id)
-            {
-                return go;
-            }
-        }
-
-        return null;
+		return resource.gameObjects.TryGetValue (id);
     }
 
     bool IsNeighborActive(int id)
