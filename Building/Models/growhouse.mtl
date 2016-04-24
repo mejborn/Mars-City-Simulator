@@ -1,5 +1,15 @@
 # Blender MTL File: 'growhouse2.blend'
-# Material Count: 2
+# Material Count: 3
+
+newmtl Grass
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.000761 0.248644 0.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 1
 
 newmtl Steel
 Ns 96.078431

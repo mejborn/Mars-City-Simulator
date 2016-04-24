@@ -21,6 +21,8 @@ public class ConnectorBehavior : MonoBehaviour {
             if (gm.GetComponent<ConnectorBehavior>() != null)
                 gm.GetComponent<ConnectorBehavior>().UpdateModel();
         }
+
+        UpdateActivity();
     }
 	
 	// Update is called once per frame
@@ -28,12 +30,83 @@ public class ConnectorBehavior : MonoBehaviour {
 	
 	}
 
+    GameObject GetObjectByID(int id)
+    {
+        foreach (GameObject go in FindObjectsOfType<GameObject>())
+        {
+            if (go.GetInstanceID() == id)
+            {
+                return go;
+            }
+        }
+
+        return null;
+    }
+
+    bool IsNeighborActive(int id)
+    {
+        if (id >= 0)
+            return false;
+
+        BuildingBehavior bh = GetObjectByID(id).GetComponent<BuildingBehavior>();
+        if (bh != null)
+        {
+            return bh.isActive;
+        }
+
+        return false;
+    }
+
+    void SetNeighborActive(int id)
+    {
+        if (id >= 0)
+            return;
+
+        BuildingBehavior bh = GetObjectByID(id).GetComponent<BuildingBehavior>();
+        if (bh != null)
+        {
+            bh.isActive = true;
+        }
+    }
+
+    public void UpdateActivity()
+    {
+        int downVal = grid.CheckCollision(transform.position.x, transform.position.z - 1);
+        int upVal = grid.CheckCollision(transform.position.x, transform.position.z + 1);
+        int leftVal = grid.CheckCollision(transform.position.x - 1, transform.position.z);
+        int rightVal = grid.CheckCollision(transform.position.x + 1, transform.position.z);
+
+        if (!GetComponent<BuildingBehavior>().isActive)
+        {
+            if (IsNeighborActive(downVal) || IsNeighborActive(upVal) || IsNeighborActive(leftVal) || IsNeighborActive(rightVal))
+                this.GetComponent<BuildingBehavior>().isActive = true;
+        }
+
+        if (this.GetComponent<BuildingBehavior>().isActive)
+        {
+            SetNeighborActive(downVal);
+            SetNeighborActive(upVal);
+            SetNeighborActive(leftVal);
+            SetNeighborActive(rightVal);
+        }
+    }
+
     public void UpdateModel()
     {
-        bool down   = grid.CheckCollision(transform.position.x, transform.position.z - 1)     == (int)GridBehavior.GridElement.Building;
-        bool up     = grid.CheckCollision(transform.position.x, transform.position.z + 1)     == (int)GridBehavior.GridElement.Building;
-        bool left   = grid.CheckCollision(transform.position.x - 1, transform.position.z)     == (int)GridBehavior.GridElement.Building;
-        bool right  = grid.CheckCollision(transform.position.x + 1, transform.position.z)     == (int)GridBehavior.GridElement.Building;
+        if (this.GetComponent<BuildingBehavior>().isActive)
+        {
+            GameObject[] gms = GameObject.FindGameObjectsWithTag("Connector");
+            foreach (GameObject gm in gms)
+            {
+                if (gm.GetComponent<ConnectorBehavior>() != null)
+                    gm.GetComponent<ConnectorBehavior>().UpdateActivity();
+            }
+        }
+
+        bool down = grid.CheckCollision(transform.position.x, transform.position.z - 1) < 0;
+        bool up = grid.CheckCollision(transform.position.x, transform.position.z + 1) < 0;
+        bool left = grid.CheckCollision(transform.position.x - 1, transform.position.z) < 0;
+        bool right = grid.CheckCollision(transform.position.x + 1, transform.position.z) < 0;
 
         //4-way
         if (up && down && left && right)
@@ -43,7 +116,6 @@ public class ConnectorBehavior : MonoBehaviour {
         else if(down && left && right)
         {
             filter.sharedMesh = meshes[3];
-            //transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
         }
         else if (up && left && right)
         {

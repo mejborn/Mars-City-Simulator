@@ -7,11 +7,26 @@ ModelImporter:
   fileIDToRecycleName:
     100000: default
     100002: //RootNode
+    100004: Framework
+    100006: Glass
+    100008: Grass
     400000: default
     400002: //RootNode
+    400004: Framework
+    400006: Glass
+    400008: Grass
     2300000: default
+    2300002: Framework
+    2300004: Glass
+    2300006: Grass
     3300000: default
+    3300002: Framework
+    3300004: Glass
+    3300006: Grass
     4300000: default
+    4300002: Framework
+    4300004: Glass
+    4300006: Grass
   materials:
     importMaterials: 1
     materialName: 0

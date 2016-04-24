@@ -18,7 +18,7 @@ public class BuildingBehavior : MonoBehaviour {
 	public List<Vector2> entrances;
 
     public bool isActive;
-
+    
 	void Awake(){
 		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
 		this.building = new Building (buildingType);
@@ -27,6 +27,10 @@ public class BuildingBehavior : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+
+
+        if (buildingType == Building.BuildingType.Habitation)
+            isActive = true;
 		//resource.addBuilding (building);
 	}
 	
