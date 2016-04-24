@@ -107,6 +107,9 @@ public class Building{
 
 	public void performWork (Person person)
 	{
+		if (!(isActive)) {
+			return;
+		}
 		Skillset skillset = person.getSkillset ();
 		double DISCfactor = calculateDICSFactor ();
 		switch (buildingType) {
