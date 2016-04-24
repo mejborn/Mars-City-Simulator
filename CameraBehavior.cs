@@ -9,7 +9,7 @@ public class CameraBehavior : MonoBehaviour {
     [SerializeField]
     float rotationSpeed = 10f;
     [SerializeField]
-    float mouseMovementZone = 10f;
+    float mouseMovementZone = 3f;
 
     Vector2 currentMousePosition;
     Vector2 lastMousePosition;
