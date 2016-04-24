@@ -30,7 +30,7 @@ public class ResourceBehavior : MonoBehaviour {
 	void Awake(){
 		this.resource = new Resource (food, water, energy, wastePoop, wastePee, soil, dirt, science, money);
 		foreach (GameObject go in FindObjectsOfType<GameObject>()) {
-			resource.gameObjects.Add (go.GetInstanceID, go);
+				resource.gameObjects.Add (go.GetInstanceID(), go.GetComponent<Building>());
 		}
 	}
 

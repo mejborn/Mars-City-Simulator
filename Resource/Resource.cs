@@ -16,7 +16,7 @@ public class Resource {
 	public double dirt {get; private set;}
 	public double science { get; private set; }
 	public double money {get; private set;}
-	public Dictionary<int,GameObject> gameObjects { get; set; }
+	public Dictionary<int,Building> gameObjects { get; set; }
 	private Dropdown dp, db;
 
 	public Resource(double food, double water, double energy, double wastePoop, double wastePee, double soil, double dirt, double science, double money){
@@ -29,7 +29,7 @@ public class Resource {
         this.dirt = dirt;
         this.science = science;
         this.money = money;
-		this.gameObjects = new Dictionary<int,GameObject> ();
+		this.gameObjects = new Dictionary<int,Building> ();
 
 		this.buildings = new LinkedList<Building> ();
 		this.people = new LinkedList<Person> ();
@@ -67,16 +67,16 @@ public class Resource {
 		foreach (Building building in buildings) {
 			switch (building.getBuildingType()) {
 			case Building.BuildingType.Growhouse:
-				food += building.consume ();
+				//food += building.consume ();
 				break;
 			case Building.BuildingType.SolarPanel:
-				energy += building.consume ();
+				//energy += building.consume ();
 				break;
 			case Building.BuildingType.ResearchCenter:
-				science += building.consume ();
+				//science += building.consume ();
 				break;
 			case Building.BuildingType.WaterTreatment:
-				water += building.consume ();
+				//water += building.consume ();
 				break;
 			case Building.BuildingType.Drill:
 				break;

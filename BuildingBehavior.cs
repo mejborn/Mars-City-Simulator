@@ -18,12 +18,13 @@ public class BuildingBehavior : MonoBehaviour {
 	public List<Vector2> entrances;
 
     public bool isActive;
+	int id;
     
 	void Awake(){
 		this.resource = GameObject.FindGameObjectWithTag ("ResourceManager").GetComponent<ResourceBehavior> ().resource;
 		this.building = new Building (buildingType);
 		resource.addBuilding (building);
-		resource.gameObjects.Add (this.GetInstanceID, this);
+		resource.gameObjects.Add (this.GetInstanceID(), this.GetComponent<Building>());
 	}
     
     // Use this for initialization
